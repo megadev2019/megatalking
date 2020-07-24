@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mega.css">
+    <link rel="stylesheet" href="css/responsive-font.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+    <title>Megatalking</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand navbar-dark" style="background-color:#00ABDA">
+        <a class="navbar-brand" href="index.html" style="position: absolute;left:20px">
+            <img class="megatalking-logo" src="img/mega_logo.png" alt="" loading="lazy">
+        </a>
+
+        <a href="#menu-toggle" id="menu-toggle" class="navbar-brand">
+            <span class="navbar-toggler-icon"></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02"
+            aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> <span
+                class="navbar-toggler-icon"></span> </button>
+    </nav>
+
+    <div id="wrapper" class="toggled">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li> <a href="#">Home</a> </li>
+                <li> <a href="#">Classroom</a> </li>
+                <li> <a href="#">Cancel/Reserve</a> </li>
+                <li> <a href="#">Progress</a> </li>
+                <li> <a href="#">Account Information</a> </li>
+                <li> <a href="#">Log out</a> </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid px-0">
+
+
+        <div class="header">
+            <div class="button-group mx-3 ">
+                <div class="text-center text-white level-test p-5 mb-2">무료수업신청하기</div>
+                <div class="text-center text-white curriculum p-5 ">수강선택</div>
+            </div>
+        </div>
+
+         <div w3-include-html="footer.html"></div>
+
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/include.js"></script>
+    <script>
+        $(function () {
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+
+            $(window).resize(function (e) {
+                if ($(window).width() <= 768) {
+                    $("#wrapper").removeClass("toggled");
+                } else {
+                    $("#wrapper").addClass("toggled");
+                }
+            });
+        });
+    </script>
+</body>
+
+<style>
+    .navbar-toggler-icon {
+        border: 1px solid white;
+        border-radius: 3px;
+        padding: 16px;
+    }
+
+    .button-group {
+        margin-top: 60px;
+    }
+
+    .level-test {
+        background-color: #00ABDA;
+        border-radius: 30px;
+        margin-top: 100px;
+    }
+
+    .curriculum {
+        background-color: #71E9FF;
+        border-radius: 30px
+    }
+
+    @media (max-width: 575.98px) {
+
+        .level-test {
+            font-size: 30px;
+        }
+
+        .curriculum {
+            font-size: 30px;
+        }
+    }
+
+    @media (min-width: 575.98px) {
+
+        .level-test {
+            font-size: 50px;
+        }
+
+        .curriculum {
+            font-size: 50px;
+        }
+    }
+</style>
+
+
+</html>

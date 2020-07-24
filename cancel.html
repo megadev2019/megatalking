@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mega.css">
+    <link rel="stylesheet" href="css/responsive-font.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <title>Megatalking</title>
+</head>
+
+<div id="app">
+
+    <body>
+
+        <div class="container-fluid px-0">
+
+            <div w3-include-html="nav.html"></div>
+
+            <div class="container">
+
+                <div class="course-select-box row p-2 mx-2">
+                    <div class="col col-5 px-1 ">
+                        <div class="course-select-text card border">
+                            <span class="card-text text-center py-2 px-1 ">수업예약 · 취소</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-12 px-1 mb-4 pt-3">
+                    <div class="background card mx-3">
+                        <div class="d-flex p-3">
+                            <div class="d-flex flex-column">
+                                <div class="r-text mt-auto">보유한 수업쿠폰</div>
+                                <div class="r-text mb-auto">수업 종료일: 06-30-2020 </div>
+                            </div>
+                            <div class="ml-auto ">
+                                <span class="coupon-number">2</span>장
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="title-box row pt-5 mx-2">
+                    <div class="col">
+                        <div class="title-text card border">
+                            <span class="card-text text-center py-2 px-1">수업취소</span>
+                        </div>
+                    </div>
+                </div>
+
+               <div class="d-flex justify-content-center mb-2 px-4">
+                   <v-app>
+                       <div>
+                           <v-date-picker width="100%" height="auto" v-model="date1" :events="arrayEvents"
+                               event-color="green lighten-1"></v-date-picker>
+                       </div>
+                   </v-app>
+               </div>
+
+               
+
+                <div class="col col-12 px-1 mb-4 pt-3">
+                    <div class="background card mx-3 d-flex flex-row p-3">
+                        <div class="r-text">06-23-2020 | 6:40</div>
+                        <div class="r-text ml-auto rounded-pill px-3"
+                            style="background-color: #FFF;border: 1px solid #FFC000;" data-toggle="modal"
+                            data-target="#cancelModal">취소</div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                06-23-2020 수업을 취소하시겠어요?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-primary">네</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="title-box row pt-5 mx-2">
+                    <div class="col">
+                        <div class="title-text card border">
+                            <span class="card-text text-center py-2 px-1">수업취소</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="carousel-time-2" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner" style="width:100">
+                        <div class="carousel-item active">
+                            <div class="time-hour-box row p-2 mx-2">
+                                <div class="col col-4 px-1 h-100">
+                                    <div id="time-hour-5" class="time-hour-text card" onclick="timeHourClick(this.id)">
+                                        <span class="card-text text-center py-2 px-1">10</span>
+                                    </div>
+                                </div>
+                                <div class="col col-4 px-1">
+                                    <div id="time-hour-6" class="time-hour-text card " onclick="timeHourClick(this.id)">
+                                        <span class="card-text text-center py-2 px-1">11</span>
+                                    </div>
+                                </div>
+                                <div class="col col-4 px-1">
+                                    <div id="time-hour-7" class="time-hour-text card " onclick="timeHourClick(this.id)">
+                                        <span class="card-text text-center py-2 px-1">12</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="time-hour-box row p-2 mx-2">
+                                <div class="col col-4 px-1 h-100">
+                                    <div id="time-hour-8" class="time-hour-text card" onclick="timeHourClick(this.id)">
+                                        <span class="card-text text-center py-2 px-1">13</span>
+                                    </div>
+                                </div>
+                                <div class="col col-4 px-1 h-100">
+                                    <div id="time-hour-9" class="time-hour-text card" onclick="timeHourClick(this.id)">
+                                        <span class="card-text text-center py-2 px-1">14</span>
+                                    </div>
+                                </div>
+                                <div class="col col-4 px-1 h-100">
+                                    <div id="time-hour-10" class="time-hour-text card" onclick="timeHourClick(this.id)">
+                                        <span class="card-text text-center py-2 px-1">15</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="time-hour-box row p-2 mx-2">
+                                <div class="col col-4 px-1 h-100 mx-auto">
+                                    <div id="time-hour-11" class="time-hour-text card" onclick="timeHourClick(this.id)">
+                                        <span class="card-text text-center py-2 px-1">16</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-time-2" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-time-2" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+                <div class="time-box row p-2 mx-2">
+                    <div class="col col-4 px-1  mb-2">
+                        <div id="time-1" class="time-text time-text-active card" onclick="timeClick(this.id)">
+                            <span class="card-text text-center py-2 px-1"></span>
+                        </div>
+                    </div>
+                    <div class="col col-4 px-1 mb-2">
+                        <div id="time-2" class="time-text card " onclick="timeClick(this.id)">
+                            <span class="card-text text-center py-2 px-1"></span>
+                        </div>
+                    </div>
+                    <div class="col col-4 px-1 mb-2">
+                        <div id="time-3" class="time-text card " onclick="timeClick(this.id)">
+                            <span class="card-text text-center py-2 px-1"></span>
+                        </div>
+                    </div>
+                    <div class="col col-4 px-1 mb-2">
+                        <div id="time-4" class="time-text card " onclick="timeClick(this.id)">
+                            <span class="card-text text-center py-2 px-1"></span>
+                        </div>
+                    </div>
+                    <div class="col col-4 px-1 mb-2">
+                        <div id="time-5" class="time-text card" onclick="timeClick(this.id)">
+                            <span class="card-text text-center py-2 px-1"></span>
+                        </div>
+                    </div>
+                    <div class="col col-4 px-1 mb-2">
+                        <div id="time-6" class="time-text card " onclick="timeClick(this.id)">
+                            <span class="card-text text-center py-2 px-1"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="see-more-cont" class="col col-12 px-1 mb-2">
+                    <div id="see-more" class="see-more card mx-3" onclick="seeMore(this.id)">
+                        <span class="card-text text-center py-2 px-1">더 알아보기</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-3 " w3-include-html="footer.html"></div>
+
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/include.js"></script>
+    </body>
+</div>
+
+<style>
+    .v-application--wrap {
+        min-height: unset;
+    }
+</style>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            arrayEvents: null,
+            date1: new Date().toISOString().substr(0, 10),
+        },
+         mounted() {
+            this.arrayEvents = [...Array(6)].map(() => {
+                const day = Math.floor(Math.random() * 30)
+                const d = new Date()
+                d.setDate(day)
+                return d.toISOString().substr(0, 10)
+            })
+            },
+
+            methods: {
+            functionEvents(date) {
+                const [, , day] = date.split('-')
+                if ([12, 17, 28].includes(parseInt(day, 10))) return true
+                if ([1, 19, 22].includes(parseInt(day, 10))) return ['red', '#00f']
+                return false
+            },
+            },
+
+            vuetify: new Vuetify(),
+    }).$mount('#app')
+</script>
+
+<script>
+    var time = new Date()
+    var timeType
+
+    setTime(10)
+
+    document.getElementById('carousel-time-2').style.display = 'none'
+
+    function setTime(timeText) {
+
+
+        var times = []
+        time.setHours(timeText)
+        time.setMinutes(0)
+
+        for (var i = 0; i < 6; i++) {
+            var nextTime = new Date(time)
+            nextTime.setMinutes(time.getMinutes() + (10 * i))
+            times.push(nextTime.getHours() + ":" + (nextTime.getMinutes() == 0 ? nextTime.getMinutes() + '0' : nextTime
+                .getMinutes()))
+        }
+
+        for (var i = 0; i < 6; i++) {
+
+            var displayTime = document.getElementsByClassName('time-text')[i].children[0].innerText = times[i]
+
+        }
+
+    }
+
+    function timeHourClick(id) {
+
+        var timeHourRow = document.getElementsByClassName("time-hour-text")
+
+
+        for (var i = 0; i < timeHourRow.length; i++) {
+
+            var timeHourRowClass = timeHourRow[i].classList
+
+            for (var j = 0; j < timeHourRowClass.length; j++) {
+
+                if (timeHourRowClass[j] == 'time-hour-text-active') {
+
+                    document.getElementById(timeHourRow[i].id).classList.remove('time-hour-text-active')
+
+                }
+
+            }
+
+        }
+
+        document.getElementById(id).classList.toggle("time-hour-text-active")
+        var timeText = document.getElementById(id).innerText
+        setTime(timeText)
+
+
+    }
+
+    function timeClick(id) {
+
+        var timeRow = document.getElementsByClassName("time-text")
+
+
+        for (var i = 0; i < timeRow.length; i++) {
+
+            var timeRowClass = timeRow[i].classList
+
+            for (var j = 0; j < timeRowClass.length; j++) {
+
+                if (timeRowClass[j] == 'time-text-active') {
+
+                    document.getElementById(timeRow[i].id).classList.remove('time-text-active')
+
+                }
+
+            }
+
+        }
+
+        document.getElementById(id).classList.toggle("time-text-active")
+
+    }
+
+    function seeMore(id) {
+
+        document.getElementById('carousel-time-2').style.display = 'inherit'
+
+
+    }
+</script>
+
+<style>
+    .container {
+        max-width: 700px;
+    }
+
+    .background {
+        background-color: #FFE699;
+    }
+</style>

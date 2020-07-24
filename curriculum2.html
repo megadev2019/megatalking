@@ -1,0 +1,1399 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mega.css">
+    <link rel="stylesheet" href="css/responsive-font.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+
+    <title>Megatalking</title>
+</head>
+
+<div id="app">
+
+
+    <body>
+
+        <div class="container-fluid px-0 h-100"></div>
+
+        <div w3-include-html="nav.html"></div>
+
+        <v-app>
+            <div v-if="windowWidth >= 760" style="background: repeating-linear-gradient(45deg, rgb(255, 243, 232) 0px, rgb(192, 245, 245)
+                        1700px)">
+                <v-container style="max-width: 900px;">
+
+
+                    <v-row class="text-center">
+
+                        <v-col cols="12" style="margin-top:70px;">
+
+                            <v-card class="mx-auto">
+                                <v-img src="img/curriculum/Atlas.jpg">
+                                    <v-tabs v-model="tab" class="mt-3" centered
+                                        background-color="rgba(255, 255, 255, 0.0)" slider-color="white">
+                                        <v-tab href="#tab-1"><span class="h4 px-2 py-2 mb-1 text-white">커리큘럼</span>
+                                        </v-tab>
+                                        <v-tab href="#tab-2"><span class="h4 px-2 py-2 mb-1 text-white">수강후기</span>
+                                        </v-tab>
+                                    </v-tabs>
+
+                                    <v-tabs-items touchless v-model="tab">
+                                        <v-tab-item class="pt-5" value="tab-1">
+
+                                            <div class="swiper-container px-3">
+                                                <div class="swiper-wrapper">
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-seedling</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">입문과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-book-open</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">초/중급<br>
+                                                            회화과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-comments</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">정규회화과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-building</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">뉴욕라이브
+                                                            <br>잉글리쉬
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-clipboard-check</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">
+                                                            문법<br> 패턴과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-lightbulb</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">
+                                                            토론/프리토킹<br> 과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-chart-line</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">
+                                                            비즈니스<br> 과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-suitcase</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">
+                                                            특별전문과정/
+                                                            <br>취업준비과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                </div>
+
+                                            </div>
+
+                                            <script type="module">
+                                                import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
+
+                                                    var swiper = new Swiper('.swiper-container', {
+                                                        slidesPerView: 8,
+                                                        spaceBetween: 10,
+                                                        centeredSlides: false,
+                                                        width: 1000,
+                                                                                                        
+                                                        pagination: {
+                                                        el: '.swiper-pagination',
+                                                        clickable: true,
+                                                                                
+                                                    },
+                                                    });
+                                                </script>
+
+                                            <v-row class="align-center justify-center">
+                                                <v-col cols="11">
+
+                                                    <v-card-text class="white--text"
+                                                        style="font-size:30px; margin-top:20px; text-align:start ">
+                                                        프리토킹
+                                                    </v-card-text>
+
+                                                </v-col>
+                                                <v-col cols="11">
+
+                                                    <v-carousel hide-delimiters cycle height="auto">
+                                                        <v-carousel-item>
+
+                                                            <v-row densed>
+
+                                                                <v-col cols="4">
+
+
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/ft_ds1.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit;  font-size:18px; ">
+                                                                            프리토킹 사진묘사
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px; ">
+                                                                            일상에 자주 거론되는 이슈에 대한 나의 의견 영어로 말하기
+                                                                        </v-card-text>
+
+
+
+
+
+                                                                    </v-card>
+                                                                </v-col>
+
+                                                                <v-col cols="4">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/ft_q&a1.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit; font-size:18px; ">
+                                                                            프리토킹 영자신문
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px;">
+                                                                            최신 뉴스기사를 영어로 접하면서 대화하기
+
+                                                                        </v-card-text>
+
+
+
+
+
+                                                                    </v-card>
+
+                                                                </v-col>
+
+                                                                <v-col cols="4">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/sp_1.jpg"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit; font-size:18px; ">
+                                                                            프리토킹 영자신문
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px;">
+                                                                            최신 뉴스기사를 영어로 접하면서 대화하기
+
+                                                                        </v-card-text>
+
+
+
+
+
+                                                                    </v-card>
+
+                                                                </v-col>
+                                                            </v-row>
+
+
+                                                        </v-carousel-item>
+
+
+                                                        <v-carousel-item>
+
+                                                            <v-row densed>
+
+                                                                <v-col cols="4">
+
+
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/ft_q&a1.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit;  font-size:18px; ">
+                                                                            프리토킹 묻고 답하기
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px; ">
+                                                                            미리 예정된 토픽에 대해 편안하게 대화하기
+                                                                        </v-card-text>
+
+
+
+
+
+                                                                    </v-card>
+                                                                </v-col>
+
+                                                                <v-col cols="4">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/ft_op1.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit; font-size:18px; ">
+                                                                            프리토킹 의견말하기
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px;">
+                                                                            일상에 자주 거론되는 이슈에 대한 나의 의견 영어로 말하기
+
+                                                                        </v-card-text>
+
+
+
+
+
+                                                                    </v-card>
+
+
+                                                                </v-col>
+
+                                                                <v-col cols="4">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/ft_ds1.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit; font-size:18px; ">
+                                                                            프리토킹 의견말하기
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px;">
+                                                                            일상에 자주 거론되는 이슈에 대한 나의 의견 영어로 말하기
+
+                                                                        </v-card-text>
+
+
+
+
+
+                                                                    </v-card>
+
+
+                                                                </v-col>
+
+                                                            </v-row>
+
+
+                                                        </v-carousel-item>
+                                                    </v-carousel>
+                                                </v-col>
+
+                                                <v-col cols="11" style="margin-top:10px;">
+
+
+                                                    <v-card-text class="white--text"
+                                                        style="font-size:30px; text-align:start ">
+                                                        일상 & 패턴
+                                                    </v-card-text>
+
+                                                </v-col>
+
+
+                                                <v-col cols="11">
+
+                                                    <v-carousel hide-delimiters cycle height="auto"
+                                                        style="margin-top:10px;">
+                                                        <v-carousel-item>
+
+                                                            <v-row densed>
+
+                                                                <v-col cols="6">
+
+
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/sp_1.jpg"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit;  font-size:18px; ">
+                                                                            스피킹 패턴과정
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px; ">
+                                                                            자주 나오는 중요한 패턴 100개 연습하기
+                                                                        </v-card-text>
+
+
+
+
+
+                                                                    </v-card>
+                                                                </v-col>
+
+                                                                <v-col cols="6">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        color="#C26661" style=" border-radius:10px;">
+                                                                        <v-img src="img/curriculum/dp_sp.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit; font-size:16px; ">
+                                                                            Grammar in Pattern 과정
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px;">
+                                                                            패턴속에 문법까지 짚어가며 정확한 표현배우기
+
+                                                                        </v-card-text>
+
+
+
+
+
+                                                                    </v-card>
+
+                                                                </v-col>
+
+                                                            </v-row>
+
+
+                                                        </v-carousel-item>
+
+
+                                                        <v-carousel-item>
+
+                                                            <v-row class="align-center justify-center">
+
+                                                                <v-col cols="6">
+
+
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/dd_1.jpg"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit;  font-size:18px; ">
+                                                                            일상 Dialogue 과정
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px; ">
+                                                                            현지인과 맞닥뜨리게되는 다양한 상황속에서 영어로 편하게 의사소통하기
+                                                                        </v-card-text>
+
+
+
+
+
+                                                                    </v-card>
+                                                                </v-col>
+
+
+
+                                                            </v-row>
+
+
+                                                        </v-carousel-item>
+                                                    </v-carousel>
+                                                </v-col>
+
+
+
+
+
+
+
+
+                                                <v-col cols="11" style="margin-top:10px;">
+
+
+                                                    <v-card-text class="white--text"
+                                                        style="font-size:30px; text-align:start ">
+                                                        리딩 & 스피킹
+                                                    </v-card-text>
+
+                                                </v-col>
+
+                                                <v-col cols="11">
+
+
+
+                                                    <v-row densed>
+
+                                                        <v-col cols="6">
+
+
+                                                            <v-card class="mx-auto" max-width="500"
+                                                                style=" border-radius:10px;" color="#7D5581" dark>
+                                                                <v-img src="img/curriculum/pr-1.webp" height="200px">
+                                                                </v-img>
+
+                                                                <v-card-title
+                                                                    style="display:inherit;  font-size:18px; ">
+                                                                    Perfect Reading 과정
+                                                                </v-card-title>
+
+                                                                <v-divider></v-divider>
+
+                                                                <v-card-text
+                                                                    style="  min-height:135px; max-height:200px; ">
+                                                                    다양한 영어지문을 정확하게 이해하는 독해력을 기르면서 중요표현 연습하면서 대화하기
+                                                                </v-card-text>
+
+
+
+
+
+                                                            </v-card>
+                                                        </v-col>
+
+                                                        <v-col cols="6">
+                                                            <v-card dark class="mx-auto" max-width="500" color="#7D5581"
+                                                                style=" border-radius:10px;">
+                                                                <v-img src="img/curriculum/ft_q&a1.webp" height="200px">
+                                                                </v-img>
+
+                                                                <v-card-title style="display:inherit; font-size:16px; ">
+                                                                    프리토킹 최신 영자신문 리딩과정
+                                                                </v-card-title>
+
+                                                                <v-divider></v-divider>
+
+                                                                <v-card-text
+                                                                    style="  min-height:135px; max-height:200px;">
+                                                                    최신 뉴스기사의 내용을 정확하게 이해하는 독해력을 기르고 중요표현 연습하면서 해당
+                                                                    내용으로
+                                                                    토론하기
+
+                                                                </v-card-text>
+
+
+
+
+
+                                                            </v-card>
+
+                                                        </v-col>
+
+                                                    </v-row>
+
+
+
+
+
+
+
+
+                                                </v-col>
+
+
+
+                                                <v-col cols="11" style="margin-top:10px;">
+
+
+                                                    <v-card-text class="white--text"
+                                                        style="font-size:30px; text-align:start ">
+                                                        비지니스 과정
+                                                    </v-card-text>
+
+                                                </v-col>
+
+                                                <v-col cols="11">
+
+
+
+                                                    <v-row densed>
+
+                                                        <v-col cols="6">
+
+
+                                                            <v-card class="mx-auto" max-width="500"
+                                                                style=" border-radius:10px;" color="#7D5581" dark>
+                                                                <v-img src="img/curriculum/int_1.webp" height="200px">
+                                                                </v-img>
+
+                                                                <v-card-title
+                                                                    style="display:inherit;  font-size:18px; ">
+                                                                    Interview (영어 면접)과정
+                                                                </v-card-title>
+
+                                                                <v-divider></v-divider>
+
+                                                                <v-card-text
+                                                                    style="  min-height:135px; max-height:200px; ">
+                                                                    영어면접에서 면접관의 질문을 정확히 이해하고 나를 충분히 어필하는 연습하기
+                                                                </v-card-text>
+
+
+
+
+
+                                                            </v-card>
+                                                        </v-col>
+
+                                                        <v-col cols="6">
+                                                            <v-card dark class="mx-auto" color="#7D5581" max-width="500"
+                                                                style=" border-radius:10px;">
+                                                                <v-img src="img/curriculum/bd_1.webp" height="200px">
+                                                                </v-img>
+
+                                                                <v-card-title style="display:inherit; font-size:16px; ">
+                                                                    프리토킹 의견말하기
+                                                                </v-card-title>
+
+                                                                <v-divider></v-divider>
+
+                                                                <v-card-text
+                                                                    style="  min-height:135px; max-height:200px;">
+                                                                    직장생활에서 일어날수있는 여러 상황을 대화지문으로 배우고 영어로 정확하게 소통하는
+                                                                    연습하기
+
+                                                                </v-card-text>
+
+
+
+
+
+                                                            </v-card>
+
+                                                        </v-col>
+
+                                                    </v-row>
+
+
+
+
+
+
+
+
+                                                </v-col>
+
+                                                <v-col cols="11" style="margin-top:10px;">
+
+
+                                                    <v-card-text class="white--text"
+                                                        style="font-size:30px; text-align:start ">
+                                                        여행영어과정
+                                                    </v-card-text>
+
+                                                </v-col>
+
+
+                                                <v-row class="align-center justify-center">
+
+                                                    <v-col cols="6">
+
+
+                                                        <v-card class="mx-auto" max-width="500"
+                                                            style=" border-radius:10px;" dark color="#324B4D">
+                                                            <v-img src="img/curriculum/te_1.webp" height="200px">
+                                                            </v-img>
+
+                                                            <v-card-title style="display:inherit;  font-size:18px; ">
+                                                                여행영어과정
+                                                            </v-card-title>
+
+                                                            <v-divider></v-divider>
+
+                                                            <v-card-text style="  min-height:135px; max-height:200px; ">
+                                                                ㅡ여행출발부터 귀국까지 일어나는 여러가지 상황에서 꼭 필요한 표현들 연습하기
+                                                            </v-card-text>
+
+
+
+
+
+                                                        </v-card>
+                                                    </v-col>
+
+
+
+                                                </v-row>
+
+                                                <v-col cols="11" style="margin-top:10px;">
+
+
+                                                    <v-card-text class="white--text"
+                                                        style="font-size:30px; text-align:start ">
+                                                        IT Issues
+                                                    </v-card-text>
+
+                                                </v-col>
+
+
+                                                <v-row class="align-center justify-center">
+
+                                                    <v-col cols="6">
+
+
+                                                        <v-card class="mx-auto" max-width="500" color="#324B4D"
+                                                            style=" border-radius:10px;" dark>
+                                                            <v-img src="img/curriculum/it_1.jpg" height="200px">
+                                                            </v-img>
+
+                                                            <v-card-title style="display:inherit;  font-size:18px; ">
+                                                                IT Issues
+                                                            </v-card-title>
+
+                                                            <v-divider></v-divider>
+
+                                                            <v-card-text style="  min-height:135px; max-height:200px; ">
+                                                                IT 분야의 뉴스와 관심을 끌고 있는 기술에 관한 기사를 소재로 수업하실 수 있어요.
+                                                            </v-card-text>
+
+
+
+
+
+                                                        </v-card>
+                                                    </v-col>
+
+
+
+                                                </v-row>
+
+
+
+
+
+                                            </v-row>
+                                        </v-tab-item>
+                                        <v-tab-item value="tab-2">
+
+                                        </v-tab-item>
+                                    </v-tabs-items>
+
+
+
+
+                                </v-img>
+
+
+
+                            </v-card>
+                        </v-col>
+
+
+
+
+                    </v-row>
+                </v-container>
+
+
+
+            </div>
+
+            <div v-else>
+
+                <v-container style="max-width: 700px; padding:0;margin-top:60px">
+                    <v-row class="text-center">
+                        <v-col cols="12" style="padding:0; margin:0">
+                            <v-card class="mx-auto">
+                                <v-img src="img/curriculum/Atlas.jpg">
+
+                                    <v-tabs v-model="tab" class="mt-3" centered
+                                        background-color="rgba(255, 255, 255, 0.0)" slider-color="white">
+                                        <v-tab href="#tab-3"><span class="h4 px-2 py-2 mb-1 text-white">커리큘럼</span>
+                                        </v-tab>
+                                        <v-tab href="#tab-4"><span class="h4 px-2 py-2 mb-1 text-white">수강후기</span>
+                                        </v-tab>
+                                    </v-tabs>
+
+                                    <v-tabs-items touchless v-model="tab">
+                                        <v-tab-item class="pt-3" value="tab-3">
+
+                                            <div class="swiper-container-mobile px-5">
+                                                <div class="swiper-wrapper">
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-seedling</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">입문과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-book-open</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">초/중급<br>
+                                                            회화과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-comments</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">정규회화과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-building</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">뉴욕라이브
+                                                            <br>잉글리쉬
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-clipboard-check</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">
+                                                            문법<br> 패턴과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-lightbulb</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">
+                                                            토론/프리토킹<br> 과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-chart-line</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">
+                                                            비즈니스<br> 과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)"
+                                                        style="border: 2px solid white;">
+                                                        <v-icon class="text-white">fas fa-suitcase</v-icon>
+                                                        <v-card-text class="text-center text-white p-0 mt-3">
+                                                            특별전문과정/
+                                                            <br>취업준비과정
+                                                        </v-card-text>
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)">
+
+                                                    </v-card>
+
+                                                    <v-card flat class="swiper-slide px-0 py-2" max-width="93"
+                                                        min-height="80" color="rgba(255, 255, 255, 0.0)">
+
+                                                    </v-card>
+
+
+
+
+
+                                                </div>
+
+                                                <script type="module">
+                                                    import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
+
+                                                var swiper = new Swiper('.swiper-container-mobile', {
+                                                    slidesPerView: 8,
+                                                    spaceBetween: 10,
+                                                    centeredSlides: false,
+                                                    width: 1000,
+                                                                                                    
+                                                    pagination: {
+                                                    el: '.swiper-pagination',
+                                                    clickable: true,
+                                                                            
+                                                },
+                                                });
+                                            </script>
+
+
+
+
+                                                <v-row class="align-center justify-center">
+                                                    <v-col cols="11" class="pb-2" style="margin-top:10px;">
+                                                        <v-card-text class="white--text"
+                                                            style="font-size:30px; text-align:center ">
+                                                            프리토킹
+                                                        </v-card-text>
+                                                    </v-col>
+                                                    <v-col cols="11" class="pt-0">
+                                                        <v-carousel hide-delimiters cycle height="auto"
+                                                            style="margin-top:10px;">
+                                                            <v-carousel-item>
+                                                                <v-col cols="12">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/ft_ds1.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit;  font-size:18px; ">
+                                                                            프리토킹 사진묘사
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px; ">
+                                                                            일상에 자주 거론되는 이슈에 대한 나의 의견 영어로 말하기
+                                                                        </v-card-text>
+                                                                    </v-card>
+                                                                </v-col>
+                                                            </v-carousel-item>
+                                                            <v-carousel-item>
+                                                                <v-col cols="12">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/ft_q&a1.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit; font-size:18px; ">
+                                                                            프리토킹 영자신문
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px;">
+                                                                            최신 뉴스기사를 영어로 접하면서 대화하기
+
+                                                                        </v-card-text>
+                                                                    </v-card>
+
+                                                                </v-col>
+
+                                                            </v-carousel-item>
+                                                            <v-carousel-item>
+                                                                <v-col cols="12">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/ft_q&a1.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit;  font-size:18px; ">
+                                                                            프리토킹 묻고 답하기
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px; ">
+                                                                            미리 예정된 토픽에 대해 편안하게 대화하기
+                                                                        </v-card-text>
+                                                                    </v-card>
+                                                                </v-col>
+                                                            </v-carousel-item>
+                                                            <v-carousel-item>
+
+                                                                <v-col cols="12">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/ft_op1.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit; font-size:18px;  ">
+                                                                            프리토킹 의견말하기
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px;">
+                                                                            일상에 자주 거론되는 이슈에 대한 나의 의견 영어로 말하기
+
+                                                                        </v-card-text>
+                                                                    </v-card>
+                                                                </v-col>
+                                                            </v-carousel-item>
+                                                        </v-carousel>
+                                                    </v-col>
+                                                    <v-col cols="11" style="margin-top:10px;">
+                                                        <v-card-text class="white--text"
+                                                            style="font-size:30px; text-align:center ">
+                                                            일상 & 패턴
+                                                        </v-card-text>
+
+                                                    </v-col>
+                                                    <v-col cols="11">
+
+                                                        <v-carousel hide-delimiters cycle height="auto"
+                                                            style="margin-top:10px;">
+                                                            <v-carousel-item>
+                                                                <v-col cols="12">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        style=" border-radius:10px;" color="#C26661">
+                                                                        <v-img src="img/curriculum/sp_1.jpg"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit;  font-size:18px; ">
+                                                                            스피킹 패턴과정
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px; ">
+                                                                            자주 나오는 중요한 패턴 100개 연습하기
+                                                                        </v-card-text>
+                                                                    </v-card>
+                                                                </v-col>
+
+                                                            </v-carousel-item>
+
+                                                            <v-carousel-item>
+                                                                <v-col cols="12">
+                                                                    <v-card class="mx-auto" max-width="500"
+                                                                        color="#C26661" style=" border-radius:10px;">
+                                                                        <v-img src="img/curriculum/dp_sp.webp"
+                                                                            height="200px">
+                                                                        </v-img>
+
+                                                                        <v-card-title
+                                                                            style="display:inherit; font-size:16px; ">
+                                                                            Grammar in Pattern 과정
+                                                                        </v-card-title>
+
+                                                                        <v-divider></v-divider>
+
+                                                                        <v-card-text
+                                                                            style="  min-height:135px; max-height:200px;">
+                                                                            패턴속에 문법까지 짚어가며 정확한 표현배우기
+
+                                                                        </v-card-text>
+                                                                    </v-card>
+                                                                </v-col>
+                                                            </v-carousel-item>
+                                                            <v-carousel-item>
+
+                                                                <v-row class="align-center justify-center">
+
+                                                                    <v-col cols="12">
+
+
+                                                                        <v-card class="mx-auto" max-width="500"
+                                                                            style=" border-radius:10px;"
+                                                                            color="#C26661">
+                                                                            <v-img src="img/curriculum/dd_1.jpg"
+                                                                                height="200px">
+                                                                            </v-img>
+
+                                                                            <v-card-title
+                                                                                style="display:inherit;  font-size:18px; ">
+                                                                                일상 Dialogue 과정
+                                                                            </v-card-title>
+
+                                                                            <v-divider></v-divider>
+
+                                                                            <v-card-text
+                                                                                style="  min-height:135px; max-height:200px; ">
+                                                                                현지인과 맞닥뜨리게되는 다양한 상황속에서 영어로 편하게 의사소통하기
+                                                                            </v-card-text>
+                                                                        </v-card>
+                                                                    </v-col>
+                                                                </v-row>
+                                                            </v-carousel-item>
+                                                        </v-carousel>
+                                                    </v-col>
+                                                    <v-col cols="11" style="margin-top:10px;">
+
+
+                                                        <v-card-text class="white--text"
+                                                            style="font-size:30px; text-align:center ">
+                                                            리딩 & 스피킹
+                                                        </v-card-text>
+
+                                                    </v-col>
+
+                                                    <v-col cols="11">
+                                                        <v-col cols="12">
+                                                            <v-card class="mx-auto" max-width="500"
+                                                                style=" border-radius:10px;" color="#7D5581" dark>
+                                                                <v-img src="img/curriculum/pr-1.webp" height="200px">
+                                                                </v-img>
+
+                                                                <v-card-title
+                                                                    style="display:inherit;  font-size:18px; ">
+                                                                    Perfect Reading 과정
+                                                                </v-card-title>
+
+                                                                <v-divider></v-divider>
+
+                                                                <v-card-text
+                                                                    style="  min-height:135px; max-height:200px; ">
+                                                                    다양한 영어지문을 정확하게 이해하는 독해력을 기르면서 중요표현 연습하면서 대화하기
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-col>
+
+                                                        <v-col cols="12">
+                                                            <v-card dark class="mx-auto" max-width="500" color="#7D5581"
+                                                                style=" border-radius:10px;">
+                                                                <v-img src="img/curriculum/ft_q&a1.webp" height="200px">
+                                                                </v-img>
+
+                                                                <v-card-title style="display:inherit; font-size:16px; ">
+                                                                    프리토킹 최신 영자신문 리딩과정
+                                                                </v-card-title>
+
+                                                                <v-divider></v-divider>
+
+                                                                <v-card-text
+                                                                    style="  min-height:135px; max-height:200px;">
+                                                                    최신 뉴스기사의 내용을 정확하게 이해하는 독해력을 기르고 중요표현 연습하면서 해당 내용으로
+                                                                    토론하기
+
+                                                                </v-card-text>
+                                                            </v-card>
+
+                                                        </v-col>
+                                                    </v-col>
+                                                    <v-col cols="11" style="margin-top:10px;">
+                                                        <v-card-text class="white--text"
+                                                            style="font-size:30px; text-align:center ">
+                                                            비지니스 과정
+                                                        </v-card-text>
+
+                                                    </v-col>
+
+                                                    <v-col cols="11">
+                                                        <v-col cols="12">
+
+
+                                                            <v-card class="mx-auto" max-width="500"
+                                                                style=" border-radius:10px;" color="#7D5581" dark>
+                                                                <v-img src="img/curriculum/int_1.webp" height="200px">
+                                                                </v-img>
+
+                                                                <v-card-title
+                                                                    style="display:inherit;  font-size:18px; ">
+                                                                    Interview (영어 면접)과정
+                                                                </v-card-title>
+
+                                                                <v-divider></v-divider>
+
+                                                                <v-card-text
+                                                                    style="  min-height:135px; max-height:200px; ">
+                                                                    영어면접에서 면접관의 질문을 정확히 이해하고 나를 충분히 어필하는 연습하기
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-col>
+
+                                                        <v-col cols="12">
+                                                            <v-card dark class="mx-auto" color="#7D5581" max-width="500"
+                                                                style=" border-radius:10px;">
+                                                                <v-img src="img/curriculum/bd_1.webp" height="200px">
+                                                                </v-img>
+
+                                                                <v-card-title style="display:inherit; font-size:16px; ">
+                                                                    프리토킹 의견말하기
+                                                                </v-card-title>
+
+                                                                <v-divider></v-divider>
+
+                                                                <v-card-text
+                                                                    style="  min-height:135px; max-height:200px;">
+                                                                    직장생활에서 일어날수있는 여러 상황을 대화지문으로 배우고 영어로 정확하게 소통하는 연습하기
+
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-col>
+                                                    </v-col>
+
+                                                    <v-col cols="11" style="margin-top:10px;">
+                                                        <v-card-text class="white--text"
+                                                            style="font-size:30px; text-align:center ">
+                                                            여행영어과정
+                                                        </v-card-text>
+                                                    </v-col>
+                                                    <v-col cols="11">
+                                                        <v-col cols="12">
+                                                            <v-card class="mx-auto" max-width="500"
+                                                                style=" border-radius:10px;" dark color="#324B4D">
+                                                                <v-img src="img/curriculum/te_1.webp" height="200px">
+                                                                </v-img>
+
+                                                                <v-card-title
+                                                                    style="display:inherit;  font-size:18px; ">
+                                                                    여행영어과정
+                                                                </v-card-title>
+
+                                                                <v-divider></v-divider>
+
+                                                                <v-card-text
+                                                                    style="  min-height:135px; max-height:200px; ">
+                                                                    ㅡ여행출발부터 귀국까지 일어나는 여러가지 상황에서 꼭 필요한 표현들 연습하기
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-col>
+                                                    </v-col>
+                                                    <v-col cols="12" style="margin-top:10px;">
+                                                        <v-card-text class="white--text"
+                                                            style="font-size:30px; text-align:center ">
+                                                            IT Issues
+                                                        </v-card-text>
+                                                    </v-col>
+                                                    <v-col cols="11">
+
+                                                        <v-col cols="12">
+                                                            <v-card class="mx-auto" max-width="500" color="#324B4D"
+                                                                style=" border-radius:10px;" dark>
+                                                                <v-img src="img/curriculum/it_1.jpg" height="200px">
+                                                                </v-img>
+
+                                                                <v-card-title
+                                                                    style="display:inherit;  font-size:18px; ">
+                                                                    IT Issues
+                                                                </v-card-title>
+
+                                                                <v-divider></v-divider>
+
+                                                                <v-card-text
+                                                                    style="  min-height:135px; max-height:200px; ">
+                                                                    IT 분야의 뉴스와 관심을 끌고 있는 기술에 관한 기사를 소재로 수업하실 수 있어요.
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-col>
+                                                    </v-col>
+                                                </v-row>
+
+
+                                        </v-tab-item>
+                                        <v-tab-item value="tab-4">
+
+                                        </v-tab-item>
+                                    </v-tabs-items>
+
+                                </v-img>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </div>
+        </v-app>
+
+
+        </v-app>
+
+
+
+</div>
+
+
+<div w3-include-html="footer.html"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/include.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+</body>
+</div>
+
+<style>
+    html {
+        min-height: 100%;
+    }
+
+    body,
+    #app {
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    .theme--light.v-tabs-items {
+        background-color: unset;
+    }
+
+    a:hover {
+        text-decoration: unset;
+    }
+</style>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            windowWidth: 0,
+            windowHeight: 0,
+            tab: null,
+
+            Freetalking: [
+
+                {
+                    img_name: 'ft_ds1.webdp',
+                    title: '프리토킹 사진묘사',
+                    content: '일상에 자주 거론되는 이슈에 대한 나의 의견 영어로 말하기'
+                },
+
+                {
+                    img_name: 'ft_q&a1.webdp',
+                    title: '프리토킹 영자신문',
+                    content: '최신 뉴스기사를 영어로 접하면서 대화하기'
+                },
+
+                {
+                    img_name: 'ft_q&a1.webdp',
+                    title: '프리토킹 묻고 답하기',
+                    content: '미리 예정된 토픽에 대해 편안하게 대화하기'
+                },
+
+                {
+                    img_name: 'ft_op1.webdp',
+                    title: '프리토킹 의견말하기',
+                    content: '일상에 자주 거론되는 이슈에 대한 나의 의견 영어로 말하기'
+                },
+            ],
+
+            items: [{
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+                },
+            ],
+        },
+
+        mounted() {
+
+            this.$nextTick(function () {
+                window.addEventListener('resize', this.getWindowWidth);
+                window.addEventListener('resize', this.getWindowHeight);
+
+
+                this.getWindowWidth()
+                this.getWindowHeight()
+            })
+
+            console.log('test')
+
+        },
+
+        methods: {
+
+            getWindowWidth() {
+                this.windowWidth = document.documentElement.clientWidth;
+
+
+            },
+
+            getWindowHeight() {
+                this.windowHeight = document.documentElement.clientHeight;
+            },
+
+            beforeDestroy() {
+                window.removeEventListener('resize', this.getWindowWidth);
+                window.removeEventListener('resize', this.getWindowHeight);
+            }
+
+        },
+
+        vuetify: new Vuetify(),
+
+    }).$mount('#app')
+</script>
+
+
+</html>

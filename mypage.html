@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0" />
+
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/mega.css" />
+  <link rel="stylesheet" href="css/responsive-font.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/mega.css" />
+
+  <title>Megatalking</title>
+</head>
+
+<div id="app">
+
+  <body>
+    <div w3-include-html="nav.html"></div>
+
+    <v-card class="mx-auto" height="270">
+      <v-img class="white--text align-end" height="270" src="img/report-img.jpg">
+        <v-container class="h-100 w-100">
+          <v-row class="align-items-center text-center h-100">
+            <!-- <v-col class="h1 font-weight-bold">My Page</v-col> -->
+          </v-row>
+        </v-container>
+      </v-img>
+    </v-card>
+
+    <div class="container px-0 px-md-2">
+      <v-app>
+        <v-container class="px-3 px-md-2">
+          <v-card flat class="mx-auto h3 font-weight-bold my-3" max-width="900" width="100%">마이페이지</v-card>
+          <v-card class="mx-auto my-5" max-width="900" width="100%">
+            <v-tabs show-arrows>
+              <v-tab class="h5 font-weight-bold pb-4 pt-4 mb-1">마이페이지</v-tab>
+              <v-tab class="h5 font-weight-bold pb-4 pt-4 mb-1">게시판</v-tab>
+              <v-tab class="h5 font-weight-bold pb-4 pt-4 mb-1">영작</v-tab>
+              <v-tab-item>
+                <v-row dense>
+                  <v-col cols="12" md="4">
+                    <v-card dark style="height: 100%;">
+                      <v-col cols="12" class="pb-0">
+                        <v-date-picker dark width="100%" v-model="picker"></v-date-picker>
+                      </v-col>
+                      <v-col cols="12" class="pb-0">
+                        <v-card-text style="background: #3a3a3a;">
+                          <v-row class="align-start">
+                            <span class="mr-1 caption">6:40+10</span>
+                            <span class="mr-1 caption">|</span>
+                            <span class="mr-1 caption">프리토킹 묻고 답하기</span>
+                            <span class="mr-1 caption">|</span>
+                            <span class="mr-1 caption">Unit 1</span>
+                            <v-spacer></v-spacer>
+                            <v-row class="d-flex justify-end">
+                              <v-btn class="mx-3 pr-2" icon color="white" width="15" height="20">
+                                <v-icon light style="font-size: 20px;">backspace</v-icon>
+                              </v-btn>
+                            </v-row>
+                          </v-row>
+                        </v-card-text>
+                      </v-col>
+
+                      <v-col cols="12">
+                        <v-card-text style="background: #3a3a3a; color: #ff8b71;">
+                          <v-row class="align-start">
+                            <span class="mr-1 caption">6:50+10</span>
+                            <span class="mr-1 caption">Kyrah </span>
+                            <span class="mr-1 caption">|</span>
+                            <span class="mr-1 caption">프리토킹 묻고 답하기</span>
+                            <span class="mr-1 caption">|</span>
+                            <span class="mr-1 caption">Unit 2</span>
+                            <v-spacer></v-spacer>
+                          </v-row>
+                        </v-card-text>
+                      </v-col>
+                    </v-card>
+                  </v-col>
+                  <v-col cols="12" md="8" class="pb-0" style="line-height: 1.2;">
+                    <v-card flat height="100%">
+                      <v-row class="px-3">
+                        <v-col cols="12" class="h5 font-weight-bold">2020-07-15 6:40 + 10 Annie | 프리토킹 묻고 답하기
+                        </v-col>
+                      </v-row>
+                      <v-col cols="12" class="pb-0 mb-0 pl-0 pr-0">
+                        <v-tabs centered class="" grow slider-color="#FF8B71" color="#5C5C5C" style="display: unset;"
+                          show-arrows>
+                          <v-tab class="pb-4 pt-4 mb-1">수강선택요약</v-tab>
+                          <v-tab class="pb-4 pt-4 mb-1">교재</v-tab>
+                          <v-tab class="pb-4 pt-4 mb-1">피드백 </v-tab>
+                          <v-tab class="pb-4 pt-4 mb-1">강사 평가</v-tab>
+                          <v-tab-item>
+                            <v-container>
+                              <v-col class="h4 font-weight-bold mb-0">
+                                준비
+                              </v-col>
+                              <iframe class="mb-3"
+                                src="http://178.128.213.14/book#/FreeTalking-QnA/FreeTalking-STEP3/chapter1"
+                                width="100%" height="400" style="padding: 0; margin: 0; border:none"></iframe>
+                              <v-row>
+                                <v-col class="h4 font-weight-bold pb-0 mb-0">
+                                  수강선택요약
+                                </v-col>
+                              </v-row>
+                              <v-row>
+                                <v-col cols="12" md="6" class="pr-3 pr-md-0 pb-0 pb-md-3">
+                                  <v-row>
+                                    <v-col cols="6" class="h6">학급 유형</v-col>
+                                    <v-col cols="6" class="h6">[Curriculum]</v-col>
+                                  </v-row>
+                                  <v-row>
+                                    <v-col cols="6" class="h6 pr-0">학급 유형수강코스</v-col>
+                                    <v-col cols="6" class="h6">[Class Type]</v-col>
+                                  </v-row>
+                                  <v-row>
+                                    <v-col cols="6" class="h6">수강시작시각</v-col>
+                                    <v-col cols="6" class="h6">[Start Date]</v-col>
+                                  </v-row>
+                                </v-col>
+                                <v-col cols="12" md="6" class="pl-3 pl-md-0 pt-0 pt-md-3">
+                                  <v-row>
+                                    <v-col cols="6" md="5" class="h6">수강과정 </v-col>
+                                    <v-col cols="6" class="h6">[Material]</v-col>
+                                  </v-row>
+                                  <v-row>
+                                    <v-col cols="6" md="5" class="h6">수강횟수</v-col>
+                                    <v-col cols="6" class="h6">[period / freq / duration]</v-col>
+                                  </v-row>
+                                  <v-row>
+                                    <v-col cols="6" md="5" class="h6">수업시간</v-col>
+                                    <v-col cols="6" class="h6">[Class Time]</v-col>
+                                  </v-row>
+                                </v-col>
+                              </v-row>
+                            </v-container>
+                          </v-tab-item>
+                          <v-tab-item class="mt-3">
+                            <iframe src="http://178.128.213.14/book#/FreeTalking-QnA/FreeTalking-STEP3/chapter1"
+                              width="100%" height="600" style="padding: 0; margin: 0; border: none"></iframe>
+                          </v-tab-item>
+                          <v-tab-item>
+                            <v-container>
+                              <v-row>
+                                <v-col cols="12" class="pt-5">
+                                  <p class="h4 font-weight-bold">녹음파일</p>
+                                </v-col>
+                                <v-col cols="8" md="5" class="pt-2">
+                                  <v-card class="rounded-pill" color="#E8E8E7">
+                                    <v-card-text>
+                                      <v-row class="justify-center px-5">
+                                        <v-icon>mdi-play</v-icon>
+                                        <v-spacer></v-spacer>
+
+                                        <v-icon>mdi-stop</v-icon>
+                                        <v-spacer></v-spacer>
+
+                                        <v-icon>mdi-cloud</v-icon>
+                                      </v-row>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                                <v-col cols="12" class="pt-5">
+                                  <p class="h4 font-weight-bold">
+                                    발음은 이렇게 해주세요
+                                  </p>
+                                </v-col>
+
+                                <v-col cols="12" class="pt-5">
+                                  <ol>
+                                    <li class="pb-2">test</li>
+                                    <li class="pb-2">test</li>
+                                    <li class="pb-2">test</li>
+                                  </ol>
+                                </v-col>
+                                <v-col cols="12" class="pt-5">
+                                  <p class="h4 font-weight-bold">
+                                    더 나은 표현을 알려 드릴께요
+                                  </p>
+                                </v-col>
+                                <v-col cols="12" class="pt-5">
+                                  <ol>
+                                    <li class="pb-2">
+                                      [Constructed] <br />
+                                      Corrected:
+                                    </li>
+                                    <li class="pb-2">
+                                      [Constructed] <br />
+                                      Corrected:
+                                    </li>
+                                    <li class="pb-2">
+                                      [Constructed] <br />
+                                      Corrected:
+                                    </li>
+                                  </ol>
+                                </v-col>
+                                <v-col cols="12" class="pt-5">
+                                  <p class="h4 font-weight-bold">
+                                    선생님으로부터의 메시지
+                                  </p>
+                                </v-col>
+                                <v-col cols="12" class="pt-5">
+                                  <p class="h4">
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis
+                                    nostrud exercitation ullamco laboris nisi
+                                    ut aliquip ex ea commodo consequat.
+                                  </p>
+                                </v-col>
+                              </v-row>
+                            </v-container>
+                          </v-tab-item>
+                          <!-- <v-tab-item>
+                            <v-container>
+                              <v-row>
+                                <v-col cols="12" class="pt-5">
+                                  <p class="h4 font-weight-bold">영작 교정 </p>
+                                </v-col>
+                                <v-col cols="12" class="pt-0 mt-0">
+                                  <v-text-field class="mt-0 pt-2 ml-1" label="작문의 제목">
+                                  </v-text-field>
+                                </v-col>
+                                <v-col cols="12" class="pt-0 pb-0">
+                                  <v-textarea name="input-7-1" filled auto-grow></v-textarea>
+                                </v-col>
+                                <v-col cols="12" class="pt-0 mt-0">
+                                  <v-row class="align-center ">
+                                    <v-col cols="6" class="pl-0 ml-0 pt-0 mt-0">
+                                      <v-card-text>
+                                        영작을 하시면 24시간내에<br>
+                                        영작담당선생님이 피드백을<br>
+                                        해드립니다. (200자 이내)
+                                      </v-card-text>
+                                    </v-col>
+                                    <v-col cols="6" class="text-right pt-0  mt-0">
+                                      <v-btn x-large dark style="width:150px">제출</v-btn>
+                                    </v-col>
+                                  </v-row>
+                                </v-col>
+                              </v-row>
+                            </v-container>
+                          </v-tab-item> -->
+                          <v-tab-item>
+                            <v-container>
+                              <v-row>
+                                <v-col cols="12" class="pt-5">
+                                  <p class="h4 font-weight-bold">
+                                    오늘 수업은 어떠셨나요?
+                                  </p>
+                                </v-col>
+                                <v-col cols="12" class="pt-5">
+                                  <v-row dense>
+                                    <v-col cols="12" md="6" class="pa-0 ma-0 pl-1">
+                                      <v-row>
+                                        <div v-for="(item, index) in ratingButtons" :key="index" class="text-center">
+                                          <!-- <v-btn :depressed="item.text === '✓' ? true : false" class="mr-2 ml-2 "
+                                        :color="item.color" v-text="item.text" @click="selectRating(index)" fab small>
+                                      </v-btn> -->
+                                          <v-icon large class="mx-2" @click="rating = index"
+                                            :color="index <= rating ? 'yellow' : 'grey'">grade</v-icon>
+                                        </div>
+                                      </v-row>
+                                    </v-col>
+                                    <!-- <v-col cols="12" md="4" class="pt-5 pt-md-0">
+                                      <p class="pt-1 h4 text-left">
+                                        매우불만족
+                                      </p>
+                                    </v-col> -->
+                                  </v-row>
+                                  <v-col cols="12" class="pt-10 px-0 mx-0">
+                                    <p class="h4 font-weight-bold">
+                                      아래 개선항목을 선택해주세요.
+                                    </p>
+                                  </v-col>
+                                  <v-col cols="12" class="px-0">
+                                    <v-row dense>
+                                      <v-col cols="12" md="6" v-for="(item, index) in improvementButtons" :key="index">
+                                        <v-btn style="
+                                              display: unset;
+                                              white-space: unset;
+                                              line-break: strict;
+                                              word-break: keep-all;
+                                            " :color="item.color" class="w-100" height="50"
+                                          @click="suggestionClick(index, item.text)">
+                                          {{item.text}}
+                                        </v-btn>
+                                      </v-col>
+                                    </v-row>
+                                  </v-col>
+                                  <v-col cols="12" class="pt-5 px-0 mx-0">
+                                    <p class="h4 font-weight-bold">
+                                      기타의견
+                                    </p>
+                                  </v-col>
+                                  <v-col cols="12" class="px-0 mx-0 pb-0 mb-0">
+                                    <v-textarea name="input-7-1" height="100" filled auto-grow></v-textarea>
+                                  </v-col>
+                                  <v-row class="text-right">
+                                    <v-col cols="12" class="py-0 my-0">
+                                      <v-btn large dark style="width: 150px;" class="py-0 my-0">제출</v-btn>
+                                    </v-col>
+                                  </v-row>
+                                </v-col>
+                              </v-row>
+                            </v-container>
+                          </v-tab-item>
+                        </v-tabs>
+                      </v-col>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </v-tab-item>
+              <v-tab-item>
+                <v-tabs class="mb-5" background-color="transparent" slider-color="orange" color="black" show-arrows>
+                  <v-tab class="mx-2">Notice</v-tab>
+                  <v-tab class="mx-2">Course Review</v-tab>
+                  <v-tab class="mx-2">QnA</v-tab>
+                  <v-tab class="mx-2">FAQ</v-tab>
+                  <v-tab-item>
+                    <v-data-table class="mb-auto mt-5 h-100" :headers="headers" :items="content" :expanded="expanded"
+                      show-expand single-expand="true" item-key="subject" hide-default-footer>
+                      <template v-slot:expanded-item="{ headers, item }">
+                        <td :colspan="headers.length">
+                          More info about the Change
+                        </td>
+                      </template>
+                    </v-data-table>
+                  </v-tab-item>
+
+                  <v-tab-item>
+                    <v-data-table class="mb-auto mt-5 h-100" :headers="headers1" :items="content1" :expanded="expanded"
+                      show-expand single-expand="true" item-key="subject" hide-default-footer>
+                      <template v-slot:expanded-item="{ headers, item }">
+                        <td :colspan="headers.length">Course Review Info</td>
+                      </template>
+                    </v-data-table>
+                  </v-tab-item>
+
+                  <v-tab-item> </v-tab-item>
+
+                  <v-tab-item>
+                    <v-data-table class="mb-auto mt-5 h-100" :headers="headers2" :items="content2" :expanded="expanded"
+                      show-expand single-expand="true" item-key="faq" hide-default-footer>
+                      <template v-slot:expanded-item="{ headers, item }">
+                        <td :colspan="headers.length">FAQ Info</td>
+                      </template>
+                    </v-data-table>
+                  </v-tab-item>
+                </v-tabs>
+                <div class="text-center w-100 h-100 mt-auto d-flex justify-center align-items-end">
+                  <v-pagination v-model="page" :length="17" :total-visible="7"></v-pagination>
+                </div>
+                <div v-if="tab == 1" class="d-flex justify-content-end mt-5 mb-3 mr-3">
+                  <v-btn color="#FF8B71" class="text-white">Write</v-btn>
+                </div>
+              </v-tab-item>
+              <v-tab-item>
+                <div class="d-flex flex-row justify-space-between">
+                  <v-container>
+                    <v-row justify="center">
+                      <v-col cols="12">
+                        <v-card flat>
+                          <v-card-title class="headline">
+                            <div class="d-flex justify-content-center align-items-center mr-2" style="
+                                  height: 40px;
+                                  width: 40px;
+                                  background-color: #303030;
+                                ">
+                              <v-icon color="white">create</v-icon>
+                            </div>
+                            Writing Correction
+                          </v-card-title>
+                          <v-divider></v-divider>
+                          <v-container class="px-4 pt-0">
+                            <v-tabs class="">
+                              <v-tab class="h4 font-weight-regular mx-4">Inbox</v-tab>
+                              <v-tab class="h4 font-weight-regular">Sent</v-tab>
+                              <v-tab-item>
+                                <v-list two-line>
+                                  <v-list-item-group>
+                                    <template v-for="(item, index) in items">
+                                      <v-list-item :key="item.title">
+                                        <template>
+                                          <v-list-item-avatar>
+                                            <v-icon x-large color="#303030">
+                                              mdi-alpha-{{item.title.charAt(0).toLowerCase()}}-circle</v-icon>
+                                          </v-list-item-avatar>
+                                          <v-list-item-content @click="inboxDialog = true">
+                                            <v-list-item-title v-text="item.title"></v-list-item-title>
+                                            <v-list-item-subtitle class="text--primary" v-text="item.headline">
+                                            </v-list-item-subtitle>
+                                            <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+                                          </v-list-item-content>
+
+                                          <v-list-item-action>
+                                            <v-list-item-action-text v-text="item.action"></v-list-item-action-text>
+                                          </v-list-item-action>
+                                        </template>
+                                      </v-list-item>
+
+                                      <v-divider v-if="index < items.length" :key="index"></v-divider>
+                                    </template>
+                                  </v-list-item-group>
+                                </v-list>
+                                <v-container>
+                                  <v-row justify="end">
+                                    <v-btn @click="writeDialog = true" color="#303030" class="white--text">WRITE</v-btn>
+                                  </v-row>
+                                </v-container>
+                              </v-tab-item>
+                              <v-tab-item>
+                                <v-list two-line>
+                                  <v-list-item-group>
+                                    <template v-for="(item, index) in items">
+                                      <v-list-item :key="item.title">
+                                        <template>
+                                          <v-list-item-avatar>
+                                            <v-icon x-large color="#303030">
+                                              mdi-alpha-{{item.title.charAt(0).toLowerCase()}}-circle</v-icon>
+                                          </v-list-item-avatar>
+                                          <v-list-item-content @click="sentDialog = true">
+                                            <v-list-item-title v-text="item.title"></v-list-item-title>
+                                            <v-list-item-subtitle class="text--primary" v-text="item.headline">
+                                            </v-list-item-subtitle>
+                                            <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+                                          </v-list-item-content>
+
+                                          <v-list-item-action>
+                                            <v-list-item-action-text v-text="item.action"></v-list-item-action-text>
+                                          </v-list-item-action>
+                                        </template>
+                                      </v-list-item>
+
+                                      <v-divider v-if="index < items.length" :key="index"></v-divider>
+                                    </template>
+                                  </v-list-item-group>
+                                </v-list>
+                                <v-container>
+                                  <v-row justify="end">
+                                    <v-btn @click="writeDialog = true" color="#303030" class="white--text">WRITE</v-btn>
+                                  </v-row>
+                                </v-container>
+                              </v-tab-item>
+                            </v-tabs>
+                          </v-container>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+
+                  <v-dialog v-model="writeDialog" max-width="1000" max-height="500">
+                    <v-card>
+                      <v-card-title class="headline">
+                        <div class="d-flex justify-content-center align-items-center mr-2" style="
+                              height: 50px;
+                              width: 50px;
+                              background-color: #303030;
+                            ">
+                          <v-icon color="white" x-large>create</v-icon>
+                        </div>
+                        Write
+                      </v-card-title>
+                      <v-container fluid>
+                        <v-row>
+                          <v-col cols="12" sm="3">
+                            <v-select v-model="teacher" label="Teacher" :items="teacher"></v-select>
+                          </v-col>
+                          <v-col cols="12" sm="9">
+                            <v-text-field v-model="subject" label="Subject"></v-text-field>
+                          </v-col>
+                        </v-row>
+                        <v-row>
+                          <v-col cols="12">
+                            <v-textarea filled placeholder="Write here ..." v-model="writeText"></v-textarea>
+                          </v-col>
+                        </v-row>
+                        <v-row class="d-flex justify-content-end">
+                          <v-btn text style="color: #303030;" @click="writeDialog = false">Cancel</v-btn>
+                          <v-btn color="#303030" class="white--text mx-2">Submit</v-btn>
+                        </v-row>
+                      </v-container>
+                    </v-card>
+                  </v-dialog>
+
+                  <v-dialog v-model="inboxDialog" max-width="1000" max-height="500">
+                    <v-card>
+                      <v-card-title class="headline">
+                        <div class="d-flex justify-content-center align-items-center mr-2" style="
+                              height: 50px;
+                              width: 50px;
+                              background-color: #303030;
+                            ">
+                          <v-icon color="white" x-large>create</v-icon>
+                        </div>
+                        Write
+                      </v-card-title>
+                      <v-container fluid>
+                        <v-row>
+                          <v-col cols="12" sm="3">
+                            <p class="title font-weight-regular">
+                              Teacher's Name
+                            </p>
+                          </v-col>
+                          <v-col cols="12" sm="9">
+                            <p class="title font-weight-regular">Subject</p>
+                          </v-col>
+                        </v-row>
+                        <v-divider class="mt-0"></v-divider>
+                        <v-row>
+                          <v-col cols="12">
+                            <p class="subtitle-1 font-weight-regular grey--text">
+                              Lorem ipsum dolor sit amet, integer sed eros
+                              urna, ipsum fermentum cursus sit massa nullam
+                              et, ut et elit at. Ultrices eleifend
+                              scelerisque. Molestie at massa morbi
+                              ullamcorper, sit duis, lacus non magna, ante
+                              quam, non augue sit est. Neque urna justo
+                              conubia congue vitae, mauris et amet augue urna
+                              diam. Curabitur massa elit, fringilla dolore
+                              posuere venenatis, curabitur etiam imperdiet non
+                              eu integer, mauris nullam et dolor. Blandit
+                              ullamcorper, vel consectetuer turpis mauris, vel
+                              enim donec, id leo leo urna facilisi. Imperdiet
+                              laoreet tempor cubilia amet, adipiscing
+                              condimentum, diam consectetuer, amet in neque
+                              dolor dui pellentesque, diam lacus risus lacinia
+                              quis vitae.
+                            </p>
+                            <p class="subtitle-1 font-weight-regular black--text">
+                              Lorem ipsum dolor sit amet, integer sed eros
+                              urna, ipsum fermentum cursus sit massa nullam
+                              et, ut et elit at. Ultrices eleifend
+                              scelerisque. Molestie at massa morbi
+                              ullamcorper, sit duis, lacus non magna, ante
+                              quam, non augue sit est. Neque urna justo
+                              conubia congue vitae, mauris et amet augue urna
+                              diam. Curabitur massa elit, fringilla dolore
+                              posuere venenatis, curabitur etiam imperdiet non
+                              eu integer, mauris nullam et dolor. Blandit
+                              ullamcorper, vel consectetuer turpis mauris, vel
+                              enim donec, id leo leo urna facilisi. Imperdiet
+                              laoreet tempor cubilia amet, adipiscing
+                              condimentum, diam consectetuer, amet in neque
+                              dolor dui pellentesque, diam lacus risus lacinia
+                              quis vitae.
+                            </p>
+                          </v-col>
+                        </v-row>
+                        <v-row class="d-flex justify-content-end">
+                          <v-btn color="#303030" class="white--text mx-2" @click="inboxDialog = false">Close</v-btn>
+                        </v-row>
+                      </v-container>
+                    </v-card>
+                  </v-dialog>
+
+                  <v-dialog v-model="sentDialog" max-width="1000" max-height="500">
+                    <v-card>
+                      <v-card-title class="headline">
+                        <div class="d-flex justify-content-center align-items-center mr-2" style="
+                              height: 50px;
+                              width: 50px;
+                              background-color: #303030;
+                            ">
+                          <v-icon color="white" x-large>create</v-icon>
+                        </div>
+                        Write
+                      </v-card-title>
+                      <v-container fluid>
+                        <v-row>
+                          <v-col cols="12" sm="3">
+                            <p class="title font-weight-regular">
+                              Teacher's Name
+                            </p>
+                          </v-col>
+                          <v-col cols="12" sm="9">
+                            <p class="title font-weight-regular">Subject</p>
+                          </v-col>
+                        </v-row>
+                        <v-divider class="mt-0"></v-divider>
+                        <v-row>
+                          <v-col cols="12">
+                            <p class="subtitle-1 font-weight-regular">
+                              Lorem ipsum dolor sit amet, integer sed eros
+                              urna, ipsum fermentum cursus sit massa nullam
+                              et, ut et elit at. Ultrices eleifend
+                              scelerisque. Molestie at massa morbi
+                              ullamcorper, sit duis, lacus non magna, ante
+                              quam, non augue sit est. Neque urna justo
+                              conubia congue vitae, mauris et amet augue urna
+                              diam. Curabitur massa elit, fringilla dolore
+                              posuere venenatis, curabitur etiam imperdiet non
+                              eu integer, mauris nullam et dolor. Blandit
+                              ullamcorper, vel consectetuer turpis mauris, vel
+                              enim donec, id leo leo urna facilisi. Imperdiet
+                              laoreet tempor cubilia amet, adipiscing
+                              condimentum, diam consectetuer, amet in neque
+                              dolor dui pellentesque, diam lacus risus lacinia
+                              quis vitae.
+                            </p>
+                          </v-col>
+                        </v-row>
+                        <v-row class="d-flex justify-content-end">
+                          <v-btn color="#303030" class="white--text mx-2" @click="sentDialog = false">Close</v-btn>
+                        </v-row>
+                      </v-container>
+                    </v-card>
+                  </v-dialog>
+                </div>
+              </v-tab-item>
+            </v-tabs>
+          </v-card>
+        </v-container>
+      </v-app>
+    </div>
+
+    <div w3-include-html="footer.html"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/include.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  </body>
+</div>
+
+<style>
+  html {
+    min-height: 100%;
+  }
+
+  body,
+  #app {
+    height: 100%;
+  }
+
+  /* .v-slide-group {
+    display: unset !important;
+  }
+
+  .v-tab {
+
+    min-width: 75px !important;
+  } */
+
+  .v-responsive__content {
+    width: 100%;
+    min-width: 100%;
+    flex: unset;
+  }
+</style>
+
+<script>
+  new Vue({
+    el: "#app",
+    data() {
+      return {
+        picker: "",
+        rating: 4,
+        tab: null,
+        expanded: [],
+        singleExpand: true,
+
+        writeDialog: false,
+        inboxDialog: false,
+        sentDialog: false,
+
+        headers: [{
+            text: "",
+            align: "start",
+            sortable: false,
+            value: "icon",
+            width: "10%",
+          },
+          {
+            text: "Date",
+            align: "start",
+            value: "date",
+            width: "20%",
+          },
+          {
+            text: "Subject",
+            sortable: false,
+            value: "subject",
+          },
+          {
+            text: "",
+            value: "data-table-expand",
+          },
+        ],
+        content: [{
+            date: "[mm-dd-yyyy]",
+            subject: "subject1",
+          },
+          {
+            date: "[mm-dd-yyyy]",
+            subject: "subject2",
+          },
+          {
+            date: "[mm-dd-yyyy]",
+            subject: "subject3",
+          },
+        ],
+
+        headers1: [{
+            text: "Date",
+            align: "start",
+            value: "date",
+            width: "20%",
+          },
+          {
+            text: "Subject",
+            sortable: false,
+            value: "subject",
+          },
+          {
+            text: "",
+            value: "data-table-expand",
+          },
+        ],
+        content1: [{
+            date: "[mm-dd-yyyy]",
+            subject: "subject1",
+          },
+          {
+            date: "[mm-dd-yyyy]",
+            subject: "subject2",
+          },
+          {
+            date: "[mm-dd-yyyy]",
+            subject: "subject3",
+          },
+        ],
+
+        headers2: [{
+            text: "FAQs",
+            align: "start",
+            sortable: false,
+            value: "faq",
+            width: "10%",
+          },
+          {
+            text: "",
+            value: "data-table-expand",
+            align: "end",
+          },
+        ],
+
+        content2: [{
+            faq: "[subject/question1]",
+          },
+          {
+            faq: "[subject/question2]",
+          },
+          {
+            faq: "[subject/question3]",
+          },
+        ],
+
+        ratingButtons: [{
+            text: "1",
+            color: "#FF8B71",
+          },
+
+          {
+            text: "2",
+            color: "#FFBE71",
+          },
+          {
+            text: "3",
+            color: "#71E9FF",
+          },
+          {
+            text: "4",
+            color: "#71E9FF",
+          },
+          {
+            text: "5",
+            color: "#71E9FF",
+          },
+        ],
+
+        improvementButtons: [{
+            text: "천천히 말해주세요",
+            color: "white",
+          },
+          {
+            text: "학생이 말을 더 많이 하도록 해주세요.",
+
+            color: "white",
+          },
+          {
+            text: "친근하고 밝은 목소리로 말해주세요.",
+
+            color: "white",
+          },
+          {
+            text: "수업시간을 잘 지켜주세요.",
+            color: "white",
+          },
+        ],
+
+        // correctedContent: [{
+        //   tutorName: 'test',
+        //   subject: 'Subject',
+        //   content: 'content',
+        //   sentDate: 'mm-dd-yyyy'
+        // }],
+
+        tutorScore: "",
+        tutorOpinion: "",
+        tutorEvaluation: [],
+
+        items: [{
+            action: "15 min",
+            headline: "Brunch this weekend?",
+            title: "Ali Connors",
+            subtitle: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?",
+          },
+          {
+            action: "2 hr",
+            headline: "Summer BBQ",
+            title: "me, Scrott, Jennifer",
+            subtitle: "Wish I could come, but I'm out of town this weekend.",
+          },
+          {
+            action: "6 hr",
+            headline: "Oui oui",
+            title: "Sandra Adams",
+            subtitle: "Do you have Paris recommendations? Have you ever been?",
+          },
+          {
+            action: "12 hr",
+            headline: "Birthday gift",
+            title: "Trevor Hansen",
+            subtitle: "Have any ideas about what we should get Heidi for her birthday?",
+          },
+          {
+            action: "18hr",
+            headline: "Recipe to try",
+            title: "Britta Holt",
+            subtitle: "We should eat this: Grate, Squash, Corn, and tomatillo Tacos.",
+          },
+        ],
+      };
+    },
+
+    methods: {
+      selectRating(index) {
+        let hasSelected = this.ratingButtons.findIndex(
+          (data) => data.text === "✓"
+        );
+
+        if (this.ratingButtons[index]["text"] !== "✓" && hasSelected < 0) {
+          this.ratingButtons[index]["text"] = "✓";
+
+          this.tutorScore = index + 1;
+        }
+
+        if (this.ratingButtons[index]["text"] === "✓" && hasSelected >= 0) {
+          this.ratingButtons[index]["text"] = index + 1;
+          this.tutorScore = "";
+        }
+
+        console.log(this.tutorScore, "sr");
+      },
+
+      suggestionClick(index, evaluation) {
+        if (this.tutorEvaluation.includes(evaluation)) {
+          let index = this.tutorEvaluation.findIndex(
+            (data) => data === evaluation
+          );
+
+          this.tutorEvaluation.splice(index, 1);
+        } else {
+          this.tutorEvaluation.push(evaluation);
+        }
+
+        if (this.improvementButtons[index].color === "white") {
+          this.improvementButtons[index].color = "#C8F6FF";
+        } else {
+          this.improvementButtons[index].color = "white";
+        }
+
+        console.log(this.tutorEvaluation, "eval");
+      },
+    },
+
+    vuetify: new Vuetify(),
+  }).$mount("#app");
+</script>
+
+</html>

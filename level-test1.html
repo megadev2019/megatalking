@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mega.css">
+    <link rel="stylesheet" href="css/level.css">
+    <link rel="stylesheet" href="css/responsive-font.css">
+    <link rel="stylesheet" href="css/tab.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+
+    <title>Megatalking</title>
+</head>
+  <div id="app">
+
+    <v-overlay :value="overlay">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
+<body>
+
+
+
+    <div class="container-fluid px-0">
+
+  <div w3-include-html = "nav.html"></div>
+
+        <div class="container">
+
+            <div class="px-4 mx-1 mb-4" style="margin-top:70px">
+                <ul class="nav nav-tabs ">
+                    <li id="tab-1" class="active tab-text text-center d-flex"style="flex:1" onclick="tabClick(this.id)">
+                        <a href="#" style="width: 100%;color:#555">신청</a></li>
+                    <li id="tab-2" class="tab-text text-center d-flex" style="flex:1" onclick="tabClick(this.id)">
+                        <a href="#" style="width: 100%;color:#555">테스트결과</a></li>
+                </ul>
+            </div>
+<center v-if = "err && err.length">{{err}}</center>
+<center v-else></center>
+<center v-if = "successText">{{successText}}</center>
+        <div id="tab-content-1">
+
+            <div class="title-box row mx-2">
+                <div class="col">
+                    <div class="title-text card border">
+                        <span class="card-text text-center py-2 px-1">무료수업신청하기</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box row p-2 mx-2">
+                <div class="col col-4 px-1">
+                    <div class="info-text card border-0 h-100 plain-text">
+                        <span class="card-text  py-2 px-1">이름</span>
+                    </div>
+                </div>
+                <div class="col col-8 pl-0 border-0">
+                    <div class="card h-100 border-0">
+                        <input v-model = "name" type="text" class="form-control form-control-lg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box row p-2 mx-2">
+                <div class="col col-4 px-1">
+                    <div class="info-text card border-0 h-100 plain-text">
+                        <span class="card-text  py-2 px-1">휴대 전화 번호</span>
+                    </div>
+                </div>
+                <div class="col col-8 pl-0">
+                    <div class="card h-100 border-0 ">
+                        <input v-model = "phone_number"  onKeyup="inputPhoneNumber( this );" maxlength="13" type="text" class="form-control form-control-lg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box row p-2 mx-2">
+                <div class="col col-4 px-1">
+                    <div class="info-text card border-0 h-100 plain-text">
+                        <span class="card-text  py-2 px-1">Email</span>
+                    </div>
+                </div>
+                <div class="col col-8 pl-0">
+                    <div class="card h-100 border-0 ">
+                        <input  v-model = "email" type="text" class="form-control form-control-lg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="plain-text r-text mt-4 p-2 mx-2">나의 영어 실력은</div>
+
+            <div class="d-flex flex-row p-2 mx-2 justify-content-around" >
+                <div id="my-level-1" class="info-text my-level-text text-center card h-100 col-5 mr-2"
+                    @click="levelClick('my-level-1', '왕초보')">
+                    <span class="card-text  py-2 px-1">왕초보</span>
+                </div>
+                <div id="my-level-2" class="info-text my-level-text text-center card h-100 col-5"
+                    @click="levelClick('my-level-2', '초보<')">
+                    <span class="card-text  py-2 px-1">초보</span>
+                </div>
+            </div>
+            <div class="d-flex flex-row p-2 mx-2 mb-4 justify-content-around">
+                <div id="my-level-3" class="info-text my-level-text text-center card h-100 col-5 mr-2"
+                  @click="levelClick('my-level-3', '중급이상')">
+                    <span class="card-text  py-2 px-1">중급이상</span>
+                </div>
+                <div id="my-level-4" class="info-text card my-level-text text-center h-100 col-5"
+                  @click="levelClick('my-level-4', '능숙함' )">
+                    <span class="card-text  py-2 px-1">능숙함</span>
+                </div>
+            </div>
+
+            <div class="form-check info-text d-flex align-items-center mb-3 py-2 border-0">
+                <input class="form-check-input ml-2" type="checkbox" v-model = "Ea" value="1" id="defaultCheck1">
+                <div class="ml-lg-5 ml-4">전체동의</div>
+            </div>
+
+            <div class="form-check info-text d-flex align-items-center mb-3 py-2 rounded">
+                <input class="form-check-input position-static ml-2" v-model = "Pa"type="checkbox" id="" value="1">
+                <div class="w-100 text-center" >개인정보 수집 및 이용동의</div>
+            </div>
+
+            <div class="form-check info-text d-flex align-items-center mb-3 py-2 rounded">
+                <input class="form-check-input position-static ml-2" v-model ="Consultation" type="checkbox" id="" value="true" >
+                <div v class="w-100 text-center">상담 및 이벤트안내동의(선택)</div>
+            </div>
+
+            <div class="title-box row mx-2 pt-4">
+                <div class="col">
+                    <div class="title-text card border">
+                        <span class="card-text text-center py-2 px-1">학급 유형</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="type-box row p-2 mx-2">
+                <div class="col col-6 px-1 h-100">
+                    <div id="type-1" class="type-text  card" @click="typeClick('type-1')">
+                        <span class="d-flex justify-content-center card-text text-center py-2 px-1">
+                            <i class="material-icons" style="font-size:36px;color:#00ABDA">call</i>
+                            전화영어
+                        </span>
+                    </div>
+                </div>
+                <div class="col col-6 px-1">
+                    <div id="type-2" class="type-text card " @click="typeClick('type-2')">
+                        <span class="d-flex justify-content-center  card-text text-center py-2 px-1">
+                            <i class="material-icons" style="font-size:36px;color:#00ABDA">videocam</i>
+                            화상영어
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="title-box row pt-5 mx-2">
+                <div class="col">
+                    <div class="title-text card border">
+                        <span class="card-text text-center py-2 px-1">수업날짜</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-box row p-2 mx-2">
+                <div class="col col-4 px-1 mb-2">
+                    <div id="day-1" class="day-text card h-100" @click="dayClick('day-1', 0)">
+                        <span class="card-text text-center py-2 px-1"> </span>
+                    </div>
+                </div>
+                <div class="col col-4 px-1 mb-2">
+                    <div id="day-2" class="day-text card h-100" @click="dayClick('day-2', 1)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+                <div class="col col-4 px-1 mb-2">
+                    <div id="day-3" class="day-text card h-100" @click="dayClick('day-3', 2)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+                <div class="col col-4 px-1">
+                    <div id="day-4" class="day-text card h-100" @click="dayClick('day-4', 3)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+                <div class="col col-4 px-1">
+                    <div id="day-5" class="day-text card h-100" @click="dayClick('day-5', 4)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+                <div class="col col-4 px-1">
+                    <div id="day-6" class="day-text card h-100" @click="dayClick('day-6' ,5)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="title-box row pt-5 mx-2">
+                <div class="col">
+                    <div class="title-text card border">
+                        <span class="card-text text-center py-2 px-1">수업시간</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="carousel-time-2" class="carousel slide" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner" style="width:100">
+                    <div class="carousel-item active">
+                        <div class="time-hour-box row p-2 mx-2">
+                            <div class="col col-4 px-1 h-100">
+                                <div id="time-hour-5" class="time-hour-text card" @click="timeHourClick('time-hour-5', 0)">
+                                    <span class="card-text text-center py-2 px-1">10</span>
+                                </div>
+                            </div>
+                            <div class="col col-4 px-1">
+                                <div id="time-hour-6" class="time-hour-text card " @click="timeHourClick('time-hour-6', 1)">
+                                    <span class="card-text text-center py-2 px-1">11</span>
+                                </div>
+                            </div>
+                            <div class="col col-4 px-1">
+                                <div id="time-hour-7" class="time-hour-text card " @click="timeHourClick('time-hour-7', 2)">
+                                    <span class="card-text text-center py-2 px-1">12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="time-hour-box row p-2 mx-2">
+                            <div class="col col-4 px-1 h-100">
+                                <div id="time-hour-8" class="time-hour-text card" @click="timeHourClick('time-hour-8', 3)">
+                                    <span class="card-text text-center py-2 px-1">13</span>
+                                </div>
+                            </div>
+                            <div class="col col-4 px-1 h-100">
+                                <div id="time-hour-9" class="time-hour-text card" @click="timeHourClick('time-hour-9', 4)">
+                                    <span class="card-text text-center py-2 px-1">14</span>
+                                </div>
+                            </div>
+                            <div class="col col-4 px-1 h-100">
+                                <div id="time-hour-10" class="time-hour-text card" @click="timeHourClick('time-hour-10', 5)">
+                                    <span class="card-text text-center py-2 px-1">15</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="time-hour-box row p-2 mx-2">
+                            <div class="col col-4 px-1 h-100 mx-auto">
+                                <div id="time-hour-11" class="time-hour-text card" onclick="timeHourClick(this.id)">
+                                    <span class="card-text text-center py-2 px-1">16</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carousel-time-2" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel-time-2" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            <div class="time-box row p-2 mx-2">
+                <div class="col col-4 px-1  mb-2">
+                    <div id="time-1" class="time-text card" @click="timeClick('time-1', 0)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+                <div class="col col-4 px-1 mb-2">
+                    <div id="time-2" class="time-text card " @click="timeClick('time-2', 1)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+                <div class="col col-4 px-1 mb-2">
+                    <div id="time-3" class="time-text card " @click="timeClick('time-3', 2)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+                <div class="col col-4 px-1 mb-2">
+                    <div id="time-4" class="time-text card " @click="timeClick('time-4', 3)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+                <div class="col col-4 px-1 mb-2">
+                    <div id="time-5" class="time-text card" @click="timeClick('time-5', 4)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+                <div class="col col-4 px-1 mb-2">
+                    <div id="time-6" class="time-text card " @click="timeClick('time-6', 5)">
+                        <span class="card-text text-center py-2 px-1"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="see-more-cont" class="col col-12 px-1 mb-2">
+                <div id="see-more" class="see-more card mx-3" onclick="seeMore(this.id)">
+                    <span class="card-text text-center py-2 px-1">더 알아보기</span>
+                </div>
+            </div>
+
+            <div class="next-button row justify-content-center mt-2 p-1 mx-1">
+                <div class="col text-center">
+                    <div class="next-button-text card border">
+                        <span class="card-text text-center py-2 px-1 " @click = "createLevelTest()">무료수업신청하기</span>
+                    </div>
+                </div>
+            </div>
+
+            </>
+
+        </div>
+    </div>
+
+  </div>
+
+
+</body>
+
+</div>
+<script src="js/include.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+<script>
+
+
+
+    function tabClick(id){
+        if(id == 'tab-1'){
+            document.getElementById(id).classList.add('active')
+            document.getElementById('tab-2').classList.remove('active')
+            document.getElementById('tab-content-1').style.display = 'inherit'
+            document.getElementById('tab-content-2').style.display = 'none'
+        }else{
+            document.getElementById(id).classList.add('active')
+            document.getElementById('tab-1').classList.remove('active')
+            document.getElementById('tab-content-1').style.display = 'none'
+            document.getElementById('tab-content-2').style.display = 'inherit'
+        }
+    }
+
+
+    function checkBoxClick(id){
+        console.log(id)
+
+        if(id == 'checkbox-1'){
+            document.getElementById(id).setAttribute("checked")
+        }
+    }
+
+    function typeClick(id) {
+
+        var typeRow = document.getElementsByClassName("type-text")
+
+
+        for (var i = 0; i < typeRow.length; i++) {
+
+            var typeRowClass = typeRow[i].classList
+
+            for (var j = 0; j < typeRowClass.length; j++) {
+
+                if (typeRowClass[j] == 'type-text-active') {
+
+                    document.getElementById(typeRow[i].id).classList.remove('type-text-active')
+
+                }
+
+            }
+
+        }
+
+        document.getElementById(id).classList.toggle("type-text-active")
+
+    }
+
+    function dayClick(id) {
+
+
+
+        var dayRow = document.getElementsByClassName("day-text")
+
+
+        for (var i = 0; i < dayRow.length; i++) {
+
+            var dayRowClass = dayRow[i].classList
+
+            for (var j = 0; j < dayRowClass.length; j++) {
+
+                if (dayRowClass[j] == 'day-text-active') {
+
+                    document.getElementById(dayRow[i].id).classList.remove('day-text-active')
+
+                }
+
+            }
+
+        }
+
+        document.getElementById(id).classList.toggle("day-text-active")
+    }
+
+    var time = new Date()
+    var timeType
+
+    setTime(10)
+
+    document.getElementById('carousel-time-2').style.display = 'none'
+
+    function setTime(timeText) {
+
+
+        var times = []
+        time.setHours(timeText)
+        time.setMinutes(0)
+
+        for (var i = 0; i < 6; i++) {
+            var nextTime = new Date(time)
+            nextTime.setMinutes(time.getMinutes() + (10 * i))
+            times.push(nextTime.getHours() + ":" + (nextTime.getMinutes() == 0 ? nextTime.getMinutes() + '0' : nextTime
+                .getMinutes()))
+
+        }
+
+        for (var i = 0; i < 6; i++) {
+
+            var displayTime = document.getElementsByClassName('time-text')[i].children[0].innerText = times[i]
+
+        }
+
+
+
+    }
+
+    var days = []
+
+    for (var i = 1; i < 12; i++) {
+        var today = new Date()
+        var nextDates = new Date(today)
+        nextDates.setDate(nextDates.getDate() + i)
+        if (nextDates.getDay() != 6 && nextDates.getDay() != 0 && days.length < 6) {
+            days.push(formatDate(nextDates))
+        }
+    }
+
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (day.length < 2)
+            day = +day;
+
+        return [month, day].join('/');
+    }
+
+    document.getElementsByClassName('day-text')
+
+    for (var i = 0; i < 6; i++) {
+
+        var displayDate = document.getElementsByClassName('day-text')[i].children[0].innerText = days[i]
+
+    }
+
+    function timeHourClick(id) {
+
+        var timeHourRow = document.getElementsByClassName("time-hour-text")
+
+
+        for (var i = 0; i < timeHourRow.length; i++) {
+
+            var timeHourRowClass = timeHourRow[i].classList
+
+            for (var j = 0; j < timeHourRowClass.length; j++) {
+
+                if (timeHourRowClass[j] == 'time-hour-text-active') {
+
+                    document.getElementById(timeHourRow[i].id).classList.remove('time-hour-text-active')
+
+                }
+
+            }
+
+        }
+
+        document.getElementById(id).classList.toggle("time-hour-text-active")
+        var timeText = document.getElementById(id).innerText
+        setTime(timeText)
+
+    }
+
+    function timeClick(id) {
+
+
+
+        var timeRow = document.getElementsByClassName("time-text")
+
+
+        for (var i = 0; i < timeRow.length; i++) {
+
+            var timeRowClass = timeRow[i].classList
+
+            for (var j = 0; j < timeRowClass.length; j++) {
+
+                if (timeRowClass[j] == 'time-text-active') {
+
+                    document.getElementById(timeRow[i].id).classList.remove('time-text-active')
+
+                }
+
+            }
+
+        }
+
+        document.getElementById(id).classList.toggle("time-text-active")
+
+    }
+
+    function levelClick(id) {
+
+        var levelRow = document.getElementsByClassName("my-level-text")
+
+
+        for (var i = 0; i < levelRow.length; i++) {
+
+            var levelRowClass = levelRow[i].classList
+
+            for (var j = 0; j < levelRowClass.length; j++) {
+
+                if (levelRowClass[j] == 'level-text-active') {
+
+                    document.getElementById(levelRow[i].id).classList.remove('level-text-active')
+
+                }
+
+            }
+
+        }
+
+        document.getElementById(id).classList.toggle("level-text-active")
+
+    }
+
+    function seeMore(id) {
+
+        document.getElementById('carousel-time-2').style.display = 'inherit'
+
+    }
+
+
+    function inputPhoneNumber(obj) {
+
+
+
+    var number = obj.value.replace(/[^0-9]/g, "");
+    var phone = "";
+
+
+
+    if(number.length < 4) {
+        return number;
+    } else if(number.length < 7) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3);
+    } else if(number.length < 11) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 3);
+        phone += "-";
+        phone += number.substr(6);
+    } else {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 4);
+        phone += "-";
+        phone += number.substr(7);
+    }
+    obj.value = phone;
+}
+
+</script>
+
+
+<script>
+
+let timess = []
+
+new Vue({
+    el: '#app',
+    data: {
+      name: '',
+      email: '',
+      overlay:false,
+      successText: '',
+      phone_number: '',
+      err: '',
+      level: '',
+      class_type : '',
+      start_date: '',
+      start_time: '',
+      Ea: '',
+      Pa: '',
+      Consultation: false,
+      times: [],
+      days: [],
+
+
+
+},
+
+mounted(){
+
+  var days = []
+
+  for (var i = 1; i < 12; i++) {
+      var today = new Date()
+      var nextDates = new Date(today)
+      nextDates.setDate(nextDates.getDate() + i)
+      if (nextDates.getDay() != 6 && nextDates.getDay() != 0 && days.length < 6) {
+          this.days.push(formatDate(nextDates))
+      }
+  }
+
+console.log(this.days)
+
+this.setTime(10)
+},
+
+watch:{
+
+Ea(newval, oldval){
+
+
+  if(newval === true){
+
+    this.Pa = true
+    this.Consultation = true
+  }
+  else{
+    this.Pa =  false
+    this.Consultation = false
+
+  }
+}
+
+},
+
+    methods: {
+
+   insert(str, index, value) {
+    return str.substr(0, index) + value + str.substr(index);
+},
+
+scrollToTop() {
+                window.scrollTo(0,0);
+           },
+
+      createLevelTest(){
+
+
+        console.log( this.name , this.phone_number , this.email , this.level , this.class_type , this.start_date , this.start_time  , this.Pa , 'datas')
+this.err = ''
+this.successText = ''
+
+
+
+
+
+
+
+
+        if(this.name && this.phone_number && this.email && this.level && this.class_type && this.start_date && this.start_time  && this.Pa){
+
+
+  this.overlay = true
+
+
+const form = new FormData()
+
+form.append('name', this.name)
+form.append('phone_number', this.phone_number)
+form.append('email', this.email)
+form.append('level',this.level)
+form.append('class_type', this.class_type )
+form.append('start_date',this.start_date )
+form.append('start_time', this.start_time)
+form.append('consultation', this.Consultation  )
+
+
+
+axios.defaults.baseURL = "http://128.199.116.65/";
+
+axios.post('lms/Student/create_level_test', form).then(res => {
+
+
+if(res.data){
+
+  this.name = ''
+  this.phone_number= ''
+  this.email = ''
+  this.level = ''
+  this.class_type = ''
+  this.start_date = ''
+  this.start_time = ''
+  this.Consultation = false
+  this.Ea = false
+  this.Pa = false
+    this.successText = 'Successfully applied for a level test.'
+
+
+
+
+this.overlay = false
+this.scrollToTop()
+
+}
+
+
+
+}).catch(err => {
+
+
+  console.log(err, 'err')
+})
+
+
+          console.log(this.Ea)
+          console.log(this.Pa)
+          console.log(this.Consultation)
+}
+
+else{
+
+
+
+  if(!this.Pa){
+
+    console.log('mypa', !this.Pa)
+
+
+    this.err = '개인정보 수집 및 이용에 대한 안내에 동의해 주십시요.'
+
+
+
+
+
+  }
+
+  else{
+this.err = ''
+
+  }
+
+
+      this.scrollToTop()
+}
+
+
+
+console.log(this.err ,'err')
+      },
+            levelClick(id, level) {
+
+        console.log(level, 'ed')
+
+        this.level = level
+
+          var levelRow = document.getElementsByClassName("my-level-text")
+
+
+          for (var i = 0; i < levelRow.length; i++) {
+
+              var levelRowClass = levelRow[i].classList
+
+              for (var j = 0; j < levelRowClass.length; j++) {
+
+                  if (levelRowClass[j] == 'level-text-active') {
+
+                      document.getElementById(levelRow[i].id).classList.remove('level-text-active')
+
+                  }
+
+              }
+
+          }
+
+          document.getElementById(id).classList.toggle("level-text-active")
+
+      },
+
+       typeClick(id) {
+
+         console.log(id, 'id')
+      if(id === 'type-1'){
+
+        this.class_type = 'phone'
+      }
+
+      if(id === 'type-2'){
+
+      this.class_type = 'video'
+      }
+
+          var typeRow = document.getElementsByClassName("type-text")
+
+
+          for (var i = 0; i < typeRow.length; i++) {
+
+              var typeRowClass = typeRow[i].classList
+
+              for (var j = 0; j < typeRowClass.length; j++) {
+
+                  if (typeRowClass[j] == 'type-text-active') {
+
+                      document.getElementById(typeRow[i].id).classList.remove('type-text-active')
+
+                  }
+
+              }
+
+          }
+
+          document.getElementById(id).classList.toggle("type-text-active")
+
+      },
+
+    dayClick(id,index) {
+
+this.start_date = moment(this.days[index], 'MM-DD').format('YYYY-MM-DD')
+
+
+        console.log(this.start_date, 'sd')
+
+          var dayRow = document.getElementsByClassName("day-text")
+
+
+          for (var i = 0; i < dayRow.length; i++) {
+
+              var dayRowClass = dayRow[i].classList
+
+              for (var j = 0; j < dayRowClass.length; j++) {
+
+                  if (dayRowClass[j] == 'day-text-active') {
+
+                      document.getElementById(dayRow[i].id).classList.remove('day-text-active')
+
+                  }
+
+              }
+
+          }
+
+          document.getElementById(id).classList.toggle("day-text-active")
+      },
+
+    setTime(timeText) {
+
+      this.times = []
+
+
+          var times = []
+          time.setHours(timeText)
+          time.setMinutes(0)
+
+          for (var i = 0; i < 6; i++) {
+              var nextTime = new Date(time)
+              nextTime.setMinutes(time.getMinutes() + (10 * i))
+              times.push(nextTime.getHours() + ":" + (nextTime.getMinutes() == 0 ? nextTime.getMinutes() + '0' : nextTime
+                  .getMinutes()))
+
+                  this.times.push(nextTime.getHours() + ":" + (nextTime.getMinutes() == 0 ? nextTime.getMinutes() + '0' : nextTime
+                      .getMinutes()))
+          }
+
+          for (var i = 0; i < 6; i++) {
+
+              var displayTime = document.getElementsByClassName('time-text')[i].children[0].innerText = times[i]
+
+          }
+
+          console.log(this.times, 'ss')
+
+
+      },
+
+
+         timeHourClick(id, index) {
+
+              var timeHourRow = document.getElementsByClassName("time-hour-text")
+
+
+              for (var i = 0; i < timeHourRow.length; i++) {
+
+                  var timeHourRowClass = timeHourRow[i].classList
+
+                  for (var j = 0; j < timeHourRowClass.length; j++) {
+
+                      if (timeHourRowClass[j] == 'time-hour-text-active') {
+
+                          document.getElementById(timeHourRow[i].id).classList.remove('time-hour-text-active')
+
+                      }
+
+                  }
+
+              }
+
+              document.getElementById(id).classList.toggle("time-hour-text-active")
+              var timeText = document.getElementById(id).innerText
+              this.setTime(timeText)
+
+          },
+
+     timeClick(id, index) {
+
+          this.start_time = this.times[index]
+          console.log(this.start_time, 'st')
+
+              var timeRow = document.getElementsByClassName("time-text")
+
+
+              for (var i = 0; i < timeRow.length; i++) {
+
+                  var timeRowClass = timeRow[i].classList
+
+                  for (var j = 0; j < timeRowClass.length; j++) {
+
+                      if (timeRowClass[j] == 'time-text-active') {
+
+                          document.getElementById(timeRow[i].id).classList.remove('time-text-active')
+
+                      }
+
+                  }
+
+              }
+
+              document.getElementById(id).classList.toggle("time-text-active")
+
+          }
+
+
+    }
+
+  })
+
+</script>
+
+<style>
+    .container {
+        max-width: 700px;
+    }
+</style>

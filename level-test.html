@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mega.css">
+    <link rel="stylesheet" href="css/responsive-font.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mega.css">
+
+
+    <title>Megatalking</title>
+</head>
+
+<div id="app">
+
+
+    <body>
+
+        <div class="container-fluid px-0 h-100">
+
+            <div w3-include-html="nav.html"></div>
+
+
+            <v-card class="mx-auto" height="275">
+                <v-img class="white--text align-end" height="275" src="img/level-test-img.jpg">
+                    <v-container class="h-100 w-100">
+                        <v-row class="align-items-center text-center h-100">
+                            <!-- <v-col class="h1 text-white font-weight-bold"> Free Sample Class</v-col> -->
+                        </v-row>
+                    </v-container>
+                </v-img>
+            </v-card>
+
+            <div class="container py-5">
+
+                <v-app>
+                    <v-card flat class="mx-auto h3 font-weight-bold" max-width="900" width="100%">무료수업</v-card>
+
+                    <v-card class="mx-auto my-5" max-width="900" width="100%">
+                        <v-container class="p-0 ">
+                            <v-row>
+                                <v-col cols="12" md="8">
+                                    <v-tabs v-model="tab" grow slider-color="#FFC000" class="p-3">
+                                        <v-tab><span class="h4 font-weight-bold">신청</span></v-tab>
+                                        <v-tab><span class="h4 font-weight-bold">테스트결과</span></v-tab>
+                                        <v-tab-item class="pt-3 font-weight-medium">
+                                            <v-row>
+                                                <v-col cols="12" class="h4 font-weight-bold">수업정보 입력</v-col>
+                                            </v-row>
+                                            <v-row>
+                                                <v-col cols="12" md="4" class="py-0">
+                                                    <v-text-field v-model="name" label="이름" color="#FFC000">
+                                                    </v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" md="4" class="py-0">
+                                                    <v-text-field v-model="phone_number" label="전화번호" color="#FFC000">
+                                                    </v-text-field>
+                                                </v-col>
+                                                <v-col cols="12" md="4" class="py-0">
+                                                    <v-text-field v-model="email" label="Email" color="#FFC000">
+                                                    </v-text-field>
+                                                </v-col>
+                                            </v-row>
+                                            <v-row class="mb-4">
+                                                <v-col cols="12" md="12" class="py-0">
+                                                    <v-checkbox v-model="checkbox1" label="전체동의"></v-checkbox>
+                                                </v-col>
+                                                <v-col cols="12" md="6" class="py-0">
+                                                    <v-checkbox v-model="checkbox2" label="개인정보 수집 및 이용동의">
+                                                    </v-checkbox>
+                                                </v-col>
+                                                <v-col cols="12" md="6" class="py-0">
+                                                    <v-checkbox v-model="checkbox3" label="상담 및 이벤트안내동의(선택)">
+                                                    </v-checkbox>
+                                                </v-col>
+                                            </v-row>
+
+                                            <v-row>
+                                                <v-col cols="12" class="h4 font-weight-bold">
+                                                    나의 영어 실력은
+                                                </v-col>
+                                            </v-row>
+
+                                            <v-row class="mb-4">
+                                                <v-col cols="6" md="3" v-for="(level, index) in levelList" :key="index">
+                                                    <v-btn @click="levelSelected = index, levelSummary = level" large
+                                                        class="w-100"
+                                                        :color="index == levelSelected ? activeColor : inactiveColor">
+                                                        {{level}}
+                                                    </v-btn>
+                                                </v-col>
+                                            </v-row>
+
+
+                                            <v-row>
+                                                <v-col cols="12" class="h4 font-weight-bold">
+                                                    수업날짜
+                                                </v-col>
+                                            </v-row>
+
+                                            <v-row class="mb-4">
+                                                <v-col cols="4" md="2" v-for="(day, index) in days" :key="index">
+                                                    <v-btn @click="daySelected = index, dateSummary = day" large
+                                                        class="w-100"
+                                                        :color="index == daySelected ? activeColor : inactiveColor">
+                                                        {{day}}
+                                                    </v-btn>
+                                                </v-col>
+                                            </v-row>
+
+                                            <v-row>
+                                                <v-col cols="12" class="h4 font-weight-bold">
+                                                    수업시간
+                                                </v-col>
+                                            </v-row>
+
+                                            <v-tabs v-if="seeMore" grow slider-color="#FFC000" show-arrows>
+                                                <v-tab v-for="n in 7" @click="setTime(n+9)">
+                                                    {{n+9}}
+                                                </v-tab>
+                                            </v-tabs>
+
+                                            <v-row class="mb-4">
+                                                <v-col cols="4" md="2" v-for="(time, index) in timeList" :key="index">
+                                                    <v-btn
+                                                        @click="timeIndexSelected = index, timeSummary = time, timeClick(time, index)"
+                                                        large class="w-100"
+                                                        :color="timeSummary == time ? activeColor : inactiveColor">
+                                                        {{time}}
+                                                    </v-btn>
+                                                </v-col>
+                                            </v-row>
+
+                                        </v-tab-item>
+                                        <v-tab-item class="pt-3">
+
+                                        </v-tab-item>
+                                    </v-tabs>
+                                </v-col>
+                                <v-col cols="12" md="4" class="p-0">
+                                    <v-container class="h-100 px-0 py-0">
+                                        <v-card class="pt-5 mx-3" dark color="#303030" height="100%">
+                                            <p v-if="tab == 0" class="h4 font-weight-bold text-center mt-5">수강선택요약</p>
+                                            <v-container v-if="tab == 0" class="h5 font-weight-medium p-4">
+                                                <v-row>
+                                                    <v-col cols="6">나의 영어 실력은</v-col>
+                                                    <v-col cols="6">{{levelSummary}}</v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="6">수업날짜</v-col>
+                                                    <v-col cols="6">{{dateSummary}}</v-col>
+                                                </v-row>
+                                                <v-row class="mb-5">
+                                                    <v-col cols="6">수업시간</v-col>
+                                                    <v-col cols="6">{{timeSummary}}</v-col>
+                                                </v-row>
+                                                <v-row class="d-flex justify-center mt-5">
+                                                    <v-btn x-large outlined class="h5 font-weight-medium">무료수업신청하기
+                                                    </v-btn>
+                                                </v-row>
+                                            </v-container>
+                                        </v-card>
+                                    </v-container>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-card>
+                </v-app>
+
+            </div>
+
+            <div w3-include-html="footer.html"></div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/include.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    </body>
+</div>
+
+<style>
+    html {
+        min-height: 100%;
+    }
+
+    body,
+    #app {
+        height: 100%;
+    }
+
+    .v-input--checkbox {
+        margin: unset;
+    }
+
+    label.v-label {
+        margin: unset;
+    }
+
+    .v-text-field {
+        padding-top: unset;
+
+    }
+
+    .v-responsive__content {
+        width: 100%;
+        min-width: 100%;
+        flex: unset;
+    }
+</style>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            days: [],
+            dateTime: new Date(),
+            timeList: [],
+            levelList: ['왕초보', '초보', '중급이상', '능숙함'],
+            tab: null,
+            tab2: null,
+
+            checkbox1: false,
+            checkbox2: false,
+            checkbox3: false,
+
+            activeColor: '#FFE699',
+            inactiveColor: '#FFF',
+            seeMore: false,
+
+            daySelected: -1,
+            timeIndexSelected: -1,
+            levelSelected: -1,
+
+            levelSummary: '',
+            timeSummary: '',
+            dateSummary: '',
+
+            name: '',
+            phone_number: '',
+            email: '',
+            time: ''
+        },
+
+        mounted() {
+
+            for (var i = 1; i < 12; i++) {
+                var today = new Date()
+                var nextDates = new Date(today)
+                nextDates.setDate(nextDates.getDate() + i)
+                if (nextDates.getDay() != 6 && nextDates.getDay() != 0 && this.days.length < 6) {
+                    this.days.push(this.formatDate(nextDates))
+                }
+            }
+
+            this.timeList = []
+            this.setTime(10)
+
+        },
+
+        computed: {
+
+
+        },
+
+        watch: {
+            tab: function () {
+
+            },
+
+            checkbox1: function () {
+                if (this.checkbox1) {
+                    this.checkbox2 = true
+                    this.checkbox3 = true
+                } else {
+                    if (this.checkbox2 && this.checkbox3) {
+                        this.checkbox2 = !this.checkbox2
+                        this.checkbox3 = !this.checkbox3
+                    }
+                }
+
+
+            },
+
+            checkbox2: function () {
+                if (!this.checkbox2) {
+                    this.checkbox1 = false
+                }
+
+                if (this.checkbox2 && this.checkbox3) {
+                    this.checkbox1 = true
+                }
+            },
+
+
+            checkbox3: function () {
+                if (!this.checkbox3) {
+                    this.checkbox1 = false
+                }
+
+                if (this.checkbox2 && this.checkbox3) {
+                    this.checkbox1 = true
+                }
+            }
+
+
+        },
+
+        methods: {
+
+            setTime(timeText) {
+                this.timeList = []
+                this.dateTime.setHours(timeText)
+                this.dateTime.setMinutes(0)
+
+                for (var i = 0; i < 6; i++) {
+                    var nextTime = new Date(this.dateTime)
+                    nextTime.setMinutes(this.dateTime.getMinutes() + (10 * i))
+                    this.timeList.push(nextTime.getHours() + ":" + (nextTime.getMinutes() == 0 ? nextTime
+                        .getMinutes() +
+                        '0' : nextTime
+                        .getMinutes()))
+                }
+
+                if (!this.seeMore) {
+                    console.log('hi')
+                    this.timeList.pop()
+                    this.timeList.push('...')
+                }
+
+            },
+
+            formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (day.length < 2)
+                    day = +day;
+
+                return [month, day].join('/');
+            },
+
+            timeClick(time, id) {
+                if (time == '...') {
+                    this.seeMore = !this.seeMore
+                    this.setTime(10)
+                    this.timeSummary = '10:50'
+                }
+            },
+
+            dayClick(day) {
+                this.daySelected = day
+            }
+
+        },
+
+        vuetify: new Vuetify(),
+
+    }).$mount('#app')
+</script>
+
+
+</html>

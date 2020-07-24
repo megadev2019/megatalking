@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mega.css">
+    <link rel="stylesheet" href="css/responsive-font.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+
+    <title>Megatalking</title>
+</head>
+
+<div id="app">
+
+
+    <body>
+
+        <div class="container-fluid px-0 h-100" style="background: repeating-linear-gradient(45deg, rgb(255, 243, 232) 0px, rgb(192, 245, 245)
+                        1700px)">
+
+            <div w3-include-html="nav.html"></div>
+
+            <div class="container px-0" style="max-width:1000px; ">
+
+                <v-app style="background-color: rgba(0,0,0,0.0);">
+                    <v-container style="max-width: 900px; background-color: rgba(0,0,0,0.0);">
+
+
+                        <v-row class=" text-center">
+
+                            <v-col class="px-0" cols="12" style="margin-top:70px; ">
+                                <v-card class="px-0">
+                                    <v-img src="img/curriculum/Atlas.jpg">
+                                        <v-tabs v-model="tab" class="mt-3" centered background-color="rgba(0,0,0,0.0)"
+                                            slider-color="white">
+                                            <v-tab href="#tab-1"><span class="h4 px-2 py-2 mb-1 text-white">커리큘럼</span>
+                                            </v-tab>
+                                            <v-tab href="#tab-2"><span class="h4 px-2 py-2 mb-1 text-white">수강후기</span>
+                                            </v-tab>
+                                        </v-tabs>
+                                        <v-tabs-items v-model="tab" class="pt-3">
+                                            <v-tab-item value="tab-1">
+                                                <v-sheet class="mx-auto px-4" color="rgba(0,0,0,0.0)">
+                                                    <v-slide-group class="mx-auto" v-model="slide" center-active>
+                                                        <v-slide-item class="mx-1" v-slot:default="{ active, toggle }">
+                                                            <v-card @click="toggle" flat class="py-2" width="97"
+                                                                min-height="80"
+                                                                :color="active ? '#FF8B71' : 'rgba(0,0,0,0.0)' "
+                                                                style="border: 2px solid white;">
+                                                                <v-icon class="text-white">fas fa-seedling</v-icon>
+                                                                <v-card-text class="text-center text-white p-0 mt-3">
+                                                                    입문과정
+                                                                </v-card-text>
+                                                            </v-card>
+
+                                                        </v-slide-item>
+
+                                                        <v-slide-item class="mx-1" v-slot:default="{ active, toggle }">
+                                                            <v-card @click="toggle" flat class="py-2" width="97"
+                                                                min-height="80"
+                                                                :color="active ? '#FF8B71' : 'rgba(0,0,0,0.0)' "
+                                                                style="border: 2px solid white;">
+                                                                <v-icon class="text-white">fas fa-book-open</v-icon>
+                                                                <v-card-text class="text-center text-white p-0 mt-3">
+                                                                    초/중급<br>
+                                                                    회화과정
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-slide-item>
+
+                                                        <v-slide-item class="mx-1" v-slot:default="{ active, toggle }">
+                                                            <v-card @click="toggle" flat class="py-2" width="97"
+                                                                min-height="80"
+                                                                :color="active ? '#FF8B71' : 'rgba(0,0,0,0.0)'"
+                                                                style="border: 2px solid white;">
+                                                                <v-icon class="text-white">fas fa-comments</v-icon>
+                                                                <v-card-text class="text-center text-white p-0 mt-3">
+                                                                    정규회화과정
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-slide-item>
+
+                                                        <v-slide-item class="mx-1" v-slot:default="{ active, toggle }">
+                                                            <v-card @click="toggle" flat class="py-2" width="97"
+                                                                min-height="80"
+                                                                :color="active ? '#FF8B71' : 'rgba(0,0,0,0.0)'"
+                                                                style="border: 2px solid white;">
+                                                                <v-icon class="text-white">fas fa-building</v-icon>
+                                                                <v-card-text class="text-center text-white p-0 mt-3">
+                                                                    뉴욕라이브
+                                                                    <br>잉글리쉬
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-slide-item>
+
+                                                        <v-slide-item class="mx-1" v-slot:default="{ active, toggle }">
+                                                            <v-card @click="toggle" flat class="py-2" width="97"
+                                                                min-height="80"
+                                                                :color="active ? '#FF8B71' : 'rgba(0,0,0,0.0)'"
+                                                                style="border: 2px solid white;">
+                                                                <v-icon class="text-white">fas fa-clipboard-check
+                                                                </v-icon>
+                                                                <v-card-text class="text-center text-white p-0 mt-3">
+                                                                    문법<br> 패턴과정
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-slide-item>
+
+                                                        <v-slide-item class="mx-1" v-slot:default="{ active, toggle }">
+                                                            <v-card @click="toggle" flat class="py-2" width="97"
+                                                                min-height="80"
+                                                                :color="active ? '#FF8B71' : 'rgba(0,0,0,0.0)'"
+                                                                style="border: 2px solid white;">
+                                                                <v-icon class="text-white">fas fa-lightbulb</v-icon>
+                                                                <v-card-text class="text-center text-white p-0 mt-3">
+                                                                    토론/프리토킹<br> 과정
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-slide-item>
+
+                                                        <v-slide-item class="mx-1" v-slot:default="{ active, toggle }">
+                                                            <v-card @click="toggle" flat class="py-2" width="97"
+                                                                min-height="80"
+                                                                :color="active ? '#FF8B71' : 'rgba(0,0,0,0.0)'"
+                                                                style="border: 2px solid white;">
+                                                                <v-icon class="text-white">fas fa-chart-line</v-icon>
+                                                                <v-card-text class="text-center text-white p-0 mt-3">
+                                                                    비즈니스<br> 과정
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-slide-item>
+
+                                                        <v-slide-item class="mx-1" v-slot:default="{ active, toggle }">
+                                                            <v-card @click="toggle" flat class="py-2" width="97"
+                                                                min-height="80"
+                                                                :color="active ? '#FF8B71' : 'rgba(0,0,0,0.0)'"
+                                                                style="border: 2px solid white;">
+                                                                <v-icon class="text-white">fas fa-suitcase</v-icon>
+                                                                <v-card-text class="text-center text-white p-0 mt-3">
+                                                                    특별전문과정/
+                                                                    <br>취업준비과정
+                                                                </v-card-text>
+                                                            </v-card>
+                                                        </v-slide-item>
+                                                    </v-slide-group>
+                                                </v-sheet>
+
+                                                <v-container class=" mt-3" fluid v-if="slide == 0"
+                                                    style="word-break: keep-all;line-break: strict;">
+                                                    <v-row>
+                                                        <v-col class="h4 font-weight-bold white--text text-left">
+                                                            기초발음교정 (Level 1)
+                                                        </v-col>
+                                                    </v-row>
+                                                    <v-sheet class="mx-auto px-4" color="rgba(0,0,0,0.0)">
+                                                        <v-slide-group class="mx-auto" v-model="slide" center-active>
+                                                            <v-slide-item class="mx-auto">
+                                                                <v-row>
+                                                                    <v-col>
+                                                                        <v-card class="book-car mx-2"
+                                                                            :width="bookCardWidth"
+                                                                            style="border-radius:10px;" color="#C26661">
+                                                                            <v-img src="img/curriculum/ft_op1.webp"
+                                                                                height="200px">
+                                                                            </v-img>
+                                                                            <v-card-title
+                                                                                style="display:inherit; font-size:18px;">
+                                                                                Phonics 1~6
+                                                                            </v-card-title>
+                                                                            <v-divider></v-divider>
+                                                                            <v-card-text
+                                                                                style="  min-height:135px; max-height:200px;">
+                                                                                기본 알파벳과 기본 단어부터 차근차근 배우고자 하시는 분, 부담없이 시작
+                                                                                할 수 있는
+                                                                                왕기초
+                                                                                발음교정 과정입니다. 1권부터 6권까지 3개월완성! (빠른 진도시
+                                                                                한달만에도
+                                                                                완성가능)
+                                                                            </v-card-text>
+                                                                        </v-card>
+                                                                    </v-col>
+                                                                </v-row>
+                                                            </v-slide-item>
+                                                            <v-slide-item>
+                                                                <v-row>
+                                                                    <v-col>
+                                                                        <v-card class="book-card mx-2"
+                                                                            :width="bookCardWidth"
+                                                                            style="border-radius:10px;" color="#C26661">
+                                                                            <v-img src="img/curriculum/ft_op1.webp"
+                                                                                height="200px">
+                                                                            </v-img>
+                                                                            <v-card-title
+                                                                                style="display:inherit; font-size:18px; ">
+                                                                                Advanced Phonics 1~6
+                                                                            </v-card-title>
+                                                                            <v-divider></v-divider>
+                                                                            <v-card-text
+                                                                                style="  min-height:135px; max-height:200px;">
+                                                                                각 Phonics의 발음들을 보다 심층적으로, 빠르게 배울 수 있는
+                                                                                퀵Phonics
+                                                                                커리큘럼입니다. Phonics를 전체적으로 복습하고자 하시는 분, 빠르게
+                                                                                Phonics를
+                                                                                익히고자 하시는분께 적합합니다.
+                                                                            </v-card-text>
+                                                                        </v-card>
+                                                                    </v-col>
+                                                                </v-row>
+                                                            </v-slide-item>
+                                                        </v-slide-group>
+                                                    </v-sheet>
+
+                                                </v-container>
+
+                                            </v-tab-item>
+                                            <v-tab-item value="tab-2">
+
+                                            </v-tab-item>
+                                        </v-tabs-items>
+
+                </v-app>
+
+            </div>
+
+            <div w3-include-html="footer.html"></div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/include.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    </body>
+</div>
+
+<style>
+    html {
+        min-height: 100%;
+    }
+
+    body,
+    #app {
+        height: 100%;
+    }
+
+    .theme--light.v-tabs-items {
+        background-color: unset
+    }
+
+    a:hover {
+        text-decoration: unset;
+    }
+</style>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            tab: null,
+            slide: 0,
+
+            windowWidth: 0,
+            windowHeight: 0,
+            bookCardWidth: 0,
+        },
+
+        watch: {
+            slide: function () {
+                console.log(this.slide)
+            }
+        },
+
+        mounted() {
+
+            this.$nextTick(function () {
+                window.addEventListener('resize', this.getWindowWidth);
+                window.addEventListener('resize', this.getWindowHeight);
+
+
+                this.getWindowWidth()
+                this.getWindowHeight()
+            })
+
+        },
+
+        methods: {
+
+            getWindowWidth() {
+                this.windowWidth = document.documentElement.clientWidth;
+
+                if (this.windowWidth < 575) {
+                    this.bookCardWidth = 300
+                } else if (this.windowWidth > 575 && this.windowWidth < 768) {
+                    this.bookCardWidth = 300
+                } else if (this.windowWidth > 768 && this.windowWidth < 969) {
+                    this.bookCardWidth = 350
+                } else {
+                    this.bookCardWidth = 385
+                }
+            },
+
+            getWindowHeight() {
+                this.windowHeight = document.documentElement.clientHeight;
+            },
+
+            beforeDestroy() {
+                window.removeEventListener('resize', this.getWindowWidth);
+                window.removeEventListener('resize', this.getWindowHeight);
+            }
+
+        },
+
+        vuetify: new Vuetify(),
+
+    }).$mount('#app')
+</script>
+
+
+</html>

@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mega.css">
+  <link rel="stylesheet" href="css/responsive-font.css">
+  <link rel="stylesheet" href="css/mypage.css">
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="jquery.word-break-keep-all.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+  <title>Megatalking</title>
+
+</head>
+
+<div id="app">
+
+  <body>
+
+    <div class="container-fluid px-0">
+
+      <div w3-include-html="nav.html"></div>
+
+      <div class="container" >
+      
+        <!-- change on class grey-box-text and remove border -->
+        <div class="course-select-box row p-2 mx-3 justify-content-between">
+          <div class="col col-4 px-1 ">
+            <div class="course-select-text grey-box-text card" onclick="showTopPage()">
+              <span class="card-text text-center py-3 text-white">내강의실</span>
+            </div>
+          </div>
+          <div class="col col-5 px-1 align-self-end">
+            <div class="course-select-text-reverse grey-box-text-reverse card">
+              <span class="card-text text-center py-3">수업예약 · 취소</span>
+            </div>
+          </div>
+        </div>
+      
+
+
+      <div id="mypage-top">
+
+
+        <div class="d-flex justify-content-center mb-2 px-4">
+        
+          <v-app>
+            <div>
+              <v-date-picker width="100%" height="auto" v-model="date1" :events="arrayEvents"
+                event-color="green lighten-1"></v-date-picker>
+            </div>
+          </v-app>
+
+        </div>
+
+        <!-- div change -->
+        <div class="col col-12 px-1 ">
+          <div class="mx-3">
+            <v-card class="text-center text-white border-bottom rounded shadow-sm p-3"
+              style="background-color:#5C5C5C;">Hyunseok님이
+              원하는 수업스타일은…</v-card>
+            <div class="card-text text-center py-3 text-white w-100" style="word-break:break-all;background: rgba(0, 0, 0, 0.59);">교재중심
+              / 필요할 때만 / 천천히 / 한꺼번에 /
+              표현중심</div>
+          </div>
+        </div>
+
+        <!-- text white and margin bottom -->
+        <div class="col col-12 px-1 pb-1 mb-3">
+          <div class="my-book-text rounded-pill card mx-3">
+            <span class="card-text text-white text-center py-3">프리토킹 묻고 답하기</span>
+          </div>
+        </div>
+
+        <!-- transparent -->
+        <div class="col col-12 px-1 pt-0 pb-1 mb-3">
+          <div class="request-text background-white-transparent card mx-3">
+            <span class="d-flex card-text text-center py-3">
+              <div class="mx-auto">06-26-2020</div>
+              <div class="mx-auto">6:40+10</div>
+              <div class="mx-auto">Annie</div>
+              <div class="mx-auto">|</div>
+              <div class="mx-auto">Unit 1</div>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <script>
+        $(document).ready(function () {
+          $("#myTab .nav-link").click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+          });
+
+          $("#myTab").click(function (e) {
+            document.getElementById("mypage-top").style.display = 'none'
+            document.getElementById("tab-content").style.display = 'inherit'
+          });
+        });
+      </script>
+
+
+      <ul id="myTab" class="nav d-flex  request-text background-white rounded-pill mx-3">
+        <li class="nav-item mx-auto">
+          <div href="#book" class="nav-link">교재</div>
+        </li>
+        <li class="nav-item mx-auto">
+          <div href="#feedback" class="nav-link px-1 px-sm-auto">피드백</div>
+        </li>
+        <li class="nav-item mx-auto">
+          <div href="#writing" class="nav-link px-1 px-sm-auto">영작</div>
+        </li>
+        <li class="nav-item mx-auto">
+          <div href="#evaluation" class="nav-link px-1 px-sm-auto">Annie 평가</div>
+        </li>
+      </ul>
+
+      <div id="tab-content" class="tab-content" style="display:none">
+        <div class="tab-pane fade show active" id="book">
+          <div style="height:300px"></div>
+        </div>
+
+        <div class="tab-pane fade" id="feedback">
+
+          <div class="title-box row py-2 mx-2">
+            <div class="col pb-0">
+              <div class="title-text card border">
+                <span class="card-text text-center py-3">녹음파일</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col col-12 px-1 mb-4 pt-0">
+            <div class="my-writing-text card mx-3">
+              <span class="card-text text-center py-3">
+                <div class="d-inline-flex w-100">
+                  <div class="mx-auto"><i class="material-icons">play_arrow</i></div>
+                  <div class="mx-auto"><i class="material-icons">stop</i></div>
+                  <div class="mx-auto"><i class="material-icons">cloud_download</i></div>
+                </div>
+              </span>
+            </div>
+          </div>
+
+          <div class="title-box row py-2 mx-2">
+            <div class="col pb-0">
+              <div class="title-text card border">
+                <span class="card-text text-center py-3">발음은 이렇게 해주세요.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col col-12 px-1 mb-4 pt-0">
+            <div class="my-writing-text card mx-3">
+              <span class="card-text text-center py-3">
+
+              </span>
+            </div>
+          </div>
+
+          <div class="title-box row py-2 mx-2">
+            <div class="col pb-0">
+              <div class="title-text card border">
+                <span class="card-text text-center py-3">더 나은 표현을 알려 드릴께요</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col col-12 px-1 mb-4 pt-0">
+            <div class="my-writing-text card mx-3">
+              <span class="card-text text-center py-3"></span>
+            </div>
+          </div>
+
+          <div class="title-box row py-2 mx-2">
+            <div class="col pb-0">
+              <div class="title-text card border">
+                <span class="card-text text-center py-3">Key Words</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col col-12 px-1 mb-4 pt-0">
+            <div class="my-writing-text card mx-3">
+              <span class="card-text text-center py-3"></span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="tab-pane fade mt-3" id="writing">
+
+          <div class="col col-12 px-1 mb-4 pt-0">
+            <div class="my-writing-text card mx-3">
+              <span class="card-text text-center py-3 mx-3">
+                <form>
+                  <div class="form-group">
+                    <div class="mb-4">
+                      <input type="text" class="form-control" placeholder="작문의 제목" />
+                    </div>
+                    <textarea class="form-control" id="writing-area" rows="10"></textarea>
+                  </div>
+                </form>
+                영작을 하시면 24시간내에 <br />
+                영작담당선생님이 피드백을 <br />
+                해드립니다. (200자 이내)
+
+                <div class="next-button row justify-content-center mt-2">
+                  <div class="col-5 col-lg-4 text-center">
+                    <div class="next-button-text card border" onclick="">
+                      <span class="card-text text-center py-3 ">제출</span>
+                    </div>
+                  </div>
+                </div>
+
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="tab-pane fade" id="evaluation">
+
+          <div class="col col-12 px-1 mb-4 pt-3">
+            <div class="my-evaluation-text card mx-3">
+              <span class="card-text text-center py-3 mx-3">
+                <div class="text-left mb-4">오늘 수업은 어떠셨나요?</div>
+
+                <div class="d-flex justify-content-center mb-5">
+                  <button id="button-1" type="button" class="btn btn-circle btn-sm mx-md-3 mx-auto"
+                    style="background-color:#FF8B71" onclick="evaluationClick(this.id)">1</button>
+                  <button id="button-2" type="button" class="btn btn-circle btn-sm mx-md-3 mx-auto"
+                    style="background-color:#FFBE71" onclick="evaluationClick(this.id)">2</button>
+                  <button id="button-3" type="button" class="btn btn-circle btn-sm mx-md-3 mx-auto"
+                    style="background-color:#71E9FF" onclick="evaluationClick(this.id)">3</button>
+                  <button id="button-4" type="button" class="btn btn-circle btn-sm mx-md-3 mx-auto"
+                    style="background-color:#71E9FF" onclick="evaluationClick(this.id)">4</button>
+                  <button id="button-5" type="button" class="btn btn-circle btn-sm mx-md-3 mx-auto"
+                    style="background-color:#71E9FF" onclick="evaluationClick(this.id)">5</button>
+                </div>
+
+                <div id="evaluation-value-text" class="text-center mb-5">매우만족</div>
+                <div class="text-left mb-4">오늘 수업은 어떠셨나요?</div>
+
+                <div class="suggestions-text-group text-center">
+                  <div id="suggestion-1" class="suggestions-text  col-11 col-lg-7 mx-auto rounded-pill mb-4 py-2"
+                    onclick="suggestionClick(this.id)">천천히 말해주세요</div>
+                  <div id="suggestion-2" class="suggestions-text col-11 col-lg-7 mx-auto rounded-pill mb-4 py-2"
+                    onclick="suggestionClick(this.id)">
+                    학생이 말을 더 많이 하도록 해주세요.</div>
+                  <div id="suggestion-3" class="suggestions-text col-11 col-lg-7 mx-auto rounded-pill mb-4 py-2"
+                    onclick="suggestionClick(this.id)">
+                    친근하고 밝은 목소리로 말해주세요.
+                  </div>
+                  <div id="suggestion-4" class="suggestions-text col-11 col-lg-7 mx-auto rounded-pill mb-4 py-2"
+                    onclick="suggestionClick(this.id)">
+                    수업시간을 잘 지켜주세요.
+                  </div>
+                </div>
+
+                <div class="text-left mb-4">기타의견</div>
+
+                <form>
+                  <div class="form-group">
+                    <div>
+                      <textarea class="form-control" id="writing-area" rows="10"></textarea>
+                    </div>
+                  </div>
+                </form>
+
+                <div class="next-button row justify-content-center mt-2">
+                  <div class="col-5 col-lg-4 text-center">
+                    <div class="next-button-text card border" onclick="">
+                      <span class="card-text text-center py-3 ">제출</span>
+                    </div>
+                  </div>
+                </div>
+
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      </div>
+
+       <div w3-include-html="footer.html"></div>
+
+
+
+    </div>
+
+
+
+  </body>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/include.js"></script>
+
+<script>
+  function evaluationClick(id) {
+    document.getElementById('evaluation-value-text').innerText = id == 'button-1' ? '매우불만족' :
+      id == 'button-2' ? '약간불만족' :
+      id == 'button-3' ? '보통' :
+      id == 'button-4' ? '약간만족' : '매우만족'
+
+  }
+
+
+
+  function suggestionClick(id) {
+    console.log(id);
+
+    console.log(document.getElementById(id).classList)
+    document.getElementById(id).classList.toggle('suggestions-text-active')
+
+  }
+
+  new Vue({
+    el: '#app',
+    data: {
+      arrayEvents: null,
+      date1: new Date().toISOString().substr(0, 10),
+    },
+
+    mounted() {
+      this.arrayEvents = [...Array(6)].map(() => {
+        const day = Math.floor(Math.random() * 30)
+        const d = new Date()
+        d.setDate(day)
+        return d.toISOString().substr(0, 10)
+      })
+    },
+
+    methods: {
+      functionEvents(date) {
+        const [, , day] = date.split('-')
+        if ([12, 17, 28].includes(parseInt(day, 10))) return true
+        if ([1, 19, 22].includes(parseInt(day, 10))) return ['red', '#00f']
+        return false
+      },
+    },
+
+    vuetify: new Vuetify(),
+
+  }).$mount('#app')
+</script>
+
+<script>
+  function showTopPage() {
+    document.getElementById("mypage-top").style.display = 'inherit'
+    document.getElementById("tab-content").style.display = 'none'
+  }
+</script>
+
+<style>
+
+  .container{
+    max-width: 700px;
+     background-image: url(../img/report-img.jpg);
+     background-position: center 30%;
+     background-repeat: no-repeat;
+     background-size: cover;
+     height: auto
+  }
+
+  .v-date-picker-table--date td {
+    padding-bottom: 16px;
+
+  }
+
+  .v-date-picker-table {
+    position: relative;
+    padding: 0 12px;
+    height: unset;
+  }
+
+
+  .v-application--wrap {
+    min-height: unset;
+  }
+
+
+
+
+  /** xsmall **/
+  @media (max-width: 575.98px) {
+
+    .ui-datepicker {
+      width: 20em
+    }
+
+    .ui-datepicker td span,
+    .ui-datepicker td a {
+      display: block;
+      padding: .7em;
+      text-align: center;
+      text-decoration: none;
+    }
+
+
+
+
+
+  }
+
+  /** small **/
+  @media (min-width: 576px) and (max-width: 767.98px) {
+
+    .v-date-picker-table--date td {
+      padding-top: 8px;
+      padding-bottom: 8px
+    }
+
+
+
+
+
+  }
+
+  /** from medium **/
+  @media (min-width: 768px) {}
+
+
+  /** large **/
+
+  @media (min-width: 768px) and (max-width: 991.98px) {}
+
+  /** xlarge **/
+  @media (min-width: 992px) {}
+</style>
+
+</html>

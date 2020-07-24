@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+  <title>Megatalking</title>
+</head>
+
+<div id="app">
+
+
+
+  <body>
+
+    <div class="container-fluid px-0 h-100">
+
+      <div w3-include-html="nav.html"></div>
+      <!-- <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+          <div class=" col-10 col-lg-5">
+            <div class="mb-5">
+              <div class="form-group">
+                <label for="member-email" v-if ="err.length">{{err}}</label>
+
+              </div>
+              <div class="form-group">
+                <label for="member-email">Email Adress</label>
+                <input type="email" class="form-control"  v-model = "User.id" id="member-email" aria-describedby="emailHelp">
+              </div>
+              <div class="form-group">
+                <label for="member-password">Password</label>
+                <input type="password" class="form-control" v-model = "User.pw" id="member-password">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block rounded-pill r-text" @click="signIn()">로그인</button>
+              <button type="submit" class="btn btn-outline-primary btn-block rounded-pill r-text">회원가입</button>
+            </div>
+              <div class="text-center mb-4">Or sign in using</div>
+                <div class="text-center d-flex justify-content-center">
+                  <div  id="naver_id_login" class="mx-2"><img src="img/Naver_icon_2014.png"></div>
+                  <div class="mx-2"><img src="img/kakao.png" width="50px" onclick = "kakao_authorize()"></div>
+                  <div class="mx-2"><img src="img/google-icon-logo.png" width="50px" class="my-2"></div>
+                  <div class="mx-2"><img src="img/facebook.png" width="50px" onclick="checkLoginState()" scope="public_profile,email"
+                  ></div>
+                </div>
+
+          </div>
+        </div>
+      </div>
+    </div> -->
+      <v-app>
+
+        <v-content>
+          <v-container id="signinup-form" class="fill-height">
+
+            <v-row align="center" justify="center" no-gutters>
+              <v-col cols="12" sm="8" md="8" class="">
+                <v-card class="evelation-12 card">
+                  <v-window v-model="step">
+                    <!--SignIn-->
+                    <v-window-item :value="1">
+                      <v-row class="">
+                        <v-col cols="12" md="8" class="pt-6 pb-6">
+                          <v-card-text>
+                            <v-form class="signup-form-form" @submit.prevent="signIn">
+
+                              <h1 class="text-center display-1 mb-10" :class="`${bgColor3}--text`">
+                                Sign in
+                              </h1>
+
+                              <label for="member-email" v-if="err.length">{{err}}</label>
+                              <v-text-field id="username" :rules="user_emailRules" label="User/Email" name="Username"
+                                v-model="User.id" color="#c9985f">
+
+                                <v-icon slot="append" color="#aab7c9">
+                                  person
+                                </v-icon>
+
+                              </v-text-field>
+
+                              <v-text-field id="password" :rules="passwordRules" label="Password" v-model="User.pw"
+                                name="Password" append-icon="lock" type="password" color="#c9985f">
+
+                                <v-icon slot="append" color="#aab7c9">
+                                  lock
+                                </v-icon>
+
+                              </v-text-field>
+
+
+                              <!-- <div class="text-center">
+                          <a
+                            href="#"
+                            class="mt-3 overline no-text-decoration"
+                            :class="`${bgColor}--text`"
+                            @click="step = 3"
+                          >
+                            Forgot your password?
+                          </a>
+                        </div> -->
+
+
+
+                              <div class="text-center mt-6">
+                                <v-btn type="submit" large :color="bgColor2" dark>Sign In</v-btn>
+                              </div>
+
+                              <div class="text-center mt-6">
+
+
+                                <v-col cols="12">
+                                  <v-row class="align-center justify-center">
+
+                                    <div class="mx-2"><img src="img/Naver_Icon_2014.png" width="36px"
+                                        onclick="kakao_authorize()"></div>
+
+
+                                    <div class="mx-2"><img src="img/kakaotalk.svg" width="36px"
+                                        onclick="kakao_authorize()"></div>
+
+
+                                    <div class="mx-2"><img src="img/google-icon-logo.png" width="36px" class="my-2">
+                                    </div>
+
+
+                                    <div class="mx-2"><img src="img/facebook.png" width="36px"
+                                        onclick="checkLoginState()" scope="public_profile,email"></div>
+
+
+                                  </v-row>
+                                </v-col>
+
+                              </div>
+                            </v-form>
+                          </v-card-text>
+                        </v-col>
+                        <v-col cols="12" md="4" class="darken-2 vcenter" style="background:#666878">
+                          <div>
+                            <v-card-text :class="`${fgColor}--text`">
+                              <h1 class="text-center headline mb-3">No User?</h1>
+                              <h5 class="text-center overline mb-3">
+                                Please Sign Up to continue
+                              </h5>
+                            </v-card-text>
+                            <div class="text-center mb-6">
+                              <v-btn dark outlined @click="step = 2">Sign Up</v-btn>
+                            </div>
+                          </div>
+                        </v-col>
+                      </v-row>
+                    </v-window-item>
+                    <!--SignUp-->
+                    <v-window-item :value="2">
+                      <v-row class="fill-height">
+                        <v-col cols="12" md="4" class="darken-2 vcenter" style="background:#38363b">
+                          <div>
+                            <v-card-text :class="`${fgColor}--text`">
+                              <h1 class="text-center headline mb-3">Already a user?</h1>
+                              <h5 class="text-center overline mb-3">Please Sign In</h5>
+                            </v-card-text>
+                            <div class="text-center mb-6">
+                              <v-btn dark outlined @click="step = 1">Sign In</v-btn>
+                            </div>
+                          </div>
+                        </v-col>
+                        <v-col cols="12" md="8" class=" pt-6 pb-6">
+                          <v-card-text>
+                            <h1 class="text-center display-1 mb-10" :class="`${bgColor3}--text`">
+                              Sign Up
+                            </h1>
+                            <v-form class="signup-form-form" @submit.prevent="signup">
+                              <v-text-field :rules="nameRules" id="username" v-model="username" label="Name"
+                                name="username" color="#c9985f" type="text">
+
+
+                                <v-icon slot="append" color="#aab7c9">
+                                  person
+                                </v-icon>
+
+                              </v-text-field>
+
+
+
+                              <v-text-field :rules="emailRules" id="email" v-model="email" label="Email" name="email"
+                                color="#c9985f" type="email">
+
+
+                                <v-icon slot="append" color="#aab7c9">
+                                  email
+                                </v-icon>
+
+                              </v-text-field>
+
+                              <v-text-field :rules="phoneRules" id="phone_number" v-model="phone_number"
+                                label="Phone number" name="phone_number" color="#c9985f" type="text">
+
+
+                                <v-icon slot="append" color="#aab7c9">
+                                  smartphone
+                                </v-icon>
+
+                              </v-text-field>
+
+                              <v-text-field :rules="passwordRules" id="password" v-model="password" label="Password"
+                                name="password" color="#c9985f" type="password">
+
+                                <v-icon slot="append" color="#aab7c9">
+                                  lock
+                                </v-icon>
+
+                              </v-text-field>
+
+                              <v-col cols="12">
+                                <v-checkbox color="rgba(0, 0, 0, 0.54)" class="shrink mr-0 mt-0">
+
+                                  >
+                                  <template v-slot:label>
+                                    <div @click.stop="">
+                                      <a href="javascript:;" @click.stop="terms = true">Entire </a>
+
+                                      <a href="javascript:;" @click.stop="conditions = true">agreement</a>
+                                    </div>
+                                  </template>
+                                </v-checkbox>
+
+                                <v-checkbox :rules="[v => !!v || 'You must agree to continue!']"
+                                  color="rgba(0, 0, 0, 0.54)" class="shrink mr-0 mt-0">
+                                  >
+                                  <template v-slot:label>
+                                    <div @click.stop="">
+                                      Personal Information Collection and Usage
+
+                                      <a href="javascript:;" @click.stop="conditions = true">Agreement</a>
+                                    </div>
+                                  </template>
+                                </v-checkbox>
+
+                                <v-checkbox color="rgba(0, 0, 0, 0.54)" class="shrink mr-0 mt-0">
+                                  >
+                                  <template v-slot:label>
+                                    <div @click.stop="">
+                                      Consultation and event guide
+
+                                      <a href="javascript:;" @click.stop="conditions = true">Agreement</a>
+                                      (optional)
+                                    </div>
+                                  </template>
+                                </v-checkbox>
+
+
+                              </v-col>
+
+
+                              <div class="text-center mt-6">
+                                <v-btn type="submit" large style="background:#38363b;" dark>
+                                  Sign Up</v-btn>
+                              </div>
+                            </v-form>
+                          </v-card-text>
+                        </v-col>
+                      </v-row>
+                    </v-window-item>
+                    <!--PW Rest-->
+                    <!-- <v-window-item :value="3">
+                <v-row class="fill-height">
+                  <v-col
+                    cols="12"
+                    md="4"
+                    class="darken-2 vcenter"
+                    :class="`${bgColor}`"
+                  >
+                    <div>
+                      <v-card-text :class="`${fgColor}--text`">
+                        <h1 class="text-center headline mb-3">Already a user?</h1>
+                        <h5 class="text-center overline mb-3">Please Sign In</h5>
+                      </v-card-text>
+                      <div class="text-center mb-6">
+                        <v-btn  color="red" dark outlined @click="step = 1">Sign In</v-btn>
+                      </div>
+                    </div>
+                  </v-col>
+                  <v-col cols="12" md="8" class="pt-6 pb-6">
+                    <v-card-text>
+                      <v-form class="signup-form-form">
+                        <h1
+                          class="text-center display-1 mb-10"
+                          :class="`${bgColor}--text`"
+                        >
+                          Reset Password
+                        </h1>
+                        <v-text-field
+                          id="login"
+                          v-model="login"
+                          label="Username / eMail"
+                          name="login"
+                          append-icon="person / email"
+                          type="text"
+                          :color="bgColor"
+                          class="v- __icon--double"
+                        />
+                        <div class="text-center mt-6">
+                          <v-btn large :color="bgColor" dark
+                            >Reset Password</v-btn
+                          >
+                        </div>
+                      </v-form>
+                    </v-card-text>
+                  </v-col>
+                </v-row>
+              </v-window-item> -->
+                  </v-window>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+
+        </v-content>
+      </v-app>
+
+
+  </body>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8">
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="js/include.js"></script>
+
+
+
+<script>
+  Kakao.init('a0f661870b749f027a72046bdfe87e3f');
+
+
+  console.log(Kakao.isInitialized());
+
+
+
+
+
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: '273171593906392',
+      cookie: true,
+      xfbml: true,
+      version: 'v7.0'
+    });
+
+    FB.AppEvents.logPageView();
+
+
+  };
+
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function checkLoginState() {
+    FB.login(function (response) {
+      if (response.authResponse) {
+        console.log(response);
+        FB.api('/me', function (response) {
+          if (response) {
+
+            localStorage.setItem('fb-login', true)
+          } else {
+
+            localStorage.removeItem('fb-login')
+          }
+        }, {
+          scope: 'email',
+          return_scopes: true
+        });
+      } else {
+        console.log('User cancelled login or did not fully authorize.');
+      }
+    });
+  }
+
+  function kakao_authorize() {
+
+
+    Kakao.Auth.login({
+
+      success: function (res) {
+
+        if (res) {
+
+          localStorage.setItem('kakao-login', true)
+        }
+
+        console.log(res, 'res')
+      },
+      fail: function (err) {
+
+        localStorage.removeItem('kakao-login')
+
+        console.log(err, 'err')
+      }
+    })
+
+
+  }
+
+
+
+  new Vue({
+    el: '#app',
+    vuetify: new Vuetify(),
+
+    props: {
+      source: {
+        type: String,
+        default: ''
+      },
+
+
+      bgColor: {
+        type: String,
+        default: 'indigo'
+      },
+
+      bgColor2: {
+        type: String,
+        default: '#666878'
+      },
+
+      bgColor3: {
+        type: String,
+        default: '#38363b'
+      },
+
+
+      fgColor: {
+        type: String,
+        default: 'white'
+      }
+    },
+    data: {
+      test: 'test',
+      err: {},
+      User: [],
+      username: '',
+      email: '',
+      phone_number: '',
+      password: '',
+      login: '',
+      snackbarType: 'success',
+      snackbarMessage: '',
+      snackbar: false,
+      step: 1,
+
+      user_emailRules: [
+        v => !!v || 'User/Email is required',
+
+      ],
+      passwordRules: [
+        v => !!v || 'Password is required',
+        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
+      phoneRules: [
+        v => !!v || 'Phone number is required',
+        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+      ],
+      valid: true,
+    },
+
+    mounted() {
+
+
+
+
+      // if(localStorage.getItem('token')){
+
+      //   window.location = 'http://localhost/mega-official/mypage.html';
+      // }
+    },
+
+    methods: {
+
+      signIn() {
+
+        console.log(this.User, 'u')
+        this.err = {}
+
+        if (!this.User.id || !this.User.pw) {
+
+          this.err = 'Credentials required'
+        }
+
+        let form = new FormData()
+
+
+        if (this.User.id) {
+          form.append('id', this.User.id)
+
+        }
+
+
+
+        if (this.User.pw) {
+
+          form.append('pw', this.User.pw)
+        }
+
+
+
+
+        if (this.User.id && this.User.pw) {
+
+          axios.defaults.baseURL = "http://localhost/";
+
+          axios.post('lms2/Uedu/SignIn', form).then(res => {
+
+            console.log(res.data, 'res')
+
+
+
+
+            const {
+              token,
+              user,
+              msg
+            } = JSON.parse(res.data.substring(2))
+
+            if (token) {
+
+              localStorage.setItem('token', token)
+
+              window.location = 'http://localhost/newmega/mypage.html';
+
+            }
+
+            if (msg) {
+
+              this.$set(this.$data, 'err', msg)
+            }
+
+
+            this.User = []
+
+
+
+          }).catch(err => {
+
+            console.log(err)
+          })
+
+        }
+      },
+      login_with_kakao() {
+
+
+
+
+
+
+      }
+
+    }
+
+  }).$mount('#app')
+</script>
+
+
+<style scoped lang="scss">
+  .v-input__icon--double .v-input__icon {
+    margin-left: -4.25rem !important;
+  }
+
+  a.no-text-decoration {
+    text-decoration: none;
+  }
+
+  #signinup-form {
+    max-width: 75rem;
+  }
+
+  .signup-form-form {
+    max-width: 23rem;
+    margin: 0 auto;
+  }
+
+  .card {
+    overflow: hidden;
+  }
+
+  .vcenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
+
+  .toggle.v-input--is-disabled.v-text-field--outline .v-input__slot {
+    border-color: red;
+  }
+</style>
+
+</html>

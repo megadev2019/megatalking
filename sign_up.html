@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mega.css">
+  <link rel="stylesheet" href="css/responsive-font.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <title>Megatalking</title>
+</head>
+
+<div id="app">
+
+  <body>
+
+    <div class="container-fluid px-0 h-100">
+      <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+          <div class=" col-10 col-lg-5">
+            <h1 class="text-center mb-4" style="font-size:50px;font-weight:700">회원가입</h1>
+            <form class="mb-5">
+              <div class="form-group">
+                <label for="member-email">Name</label>
+                <input type="email" class="form-control" id="member-name" aria-describedby="emailHelp">
+              </div>
+              <div class="form-group">
+                <label for="member-email">Email Adress</label>
+                <input type="email" class="form-control" id="member-email" aria-describedby="emailHelp">
+              </div>
+              <div class="form-group">
+                <label for="member-password">Password</label>
+                <input type="password" class="form-control" id="member-password">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block rounded-pill r-text">로그인</button>
+              <button type="submit" class="btn btn-outline-primary btn-block rounded-pill r-text">회원가입</button>
+            </form>
+            <div class="text-center mb-4">Or sign up using</div>
+            <div class="text-center d-flex justify-content-center">
+              <div class="mx-2"><img src="img/Naver_icon_2014.png" width="50px"></div>
+              <div class="mx-2"><img src="img/kakao.png" width="50px"></div>
+              <div class="mx-2"><img src="img/google-icon-logo.png" width="50px" class="my-2"></div>
+              <div class="mx-2"><img src="img/facebook.png" width="50px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </body>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      test: 'test'
+    },
+  }).$mount('#app')
+</script>
+
+<style>
+  html {
+    height: 100%;
+  }
+
+  body {
+    height: 100%;
+  }
+
+  #app {
+    height: 100%;
+  }
+
+  input {
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    border-bottom: 1px solid black !important;
+    border-radius: 0 !important;
+  }
+</style>
+
+
+</html>

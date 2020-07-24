@@ -1,0 +1,1900 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mega.css">
+    <link rel="stylesheet" href="css/responsive-font.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+
+    <title>Megatalking</title>
+</head>
+
+<style>
+    html {
+        min-height: 100%;
+    }
+
+    body,
+    #app {
+        height: 100%;
+    }
+
+    .v-responsive__content {
+        width: 100%;
+        min-width: 100%;
+        flex: unset;
+    }
+</style>
+
+<div id="app">
+
+
+    <body>
+
+        <div class="container-fluid px-0 h-100" v-if="isLoaded">
+
+            <div w3-include-html="nav.html"></div>
+
+
+            <v-card class="mx-auto" height="275">
+                <v-img class="white--text align-end" height="275"
+                    src="https://images.unsplash.com/photo-1510070009289-b5bc34383727?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80">
+                    <v-container class="h-100 w-100">
+                        <v-row class="align-items-center text-center h-100">
+                            <!-- <v-col class="h1 text-white font-weight-bold">Enrollment</v-col> -->
+                        </v-row>
+                    </v-container>
+                </v-img>
+            </v-card>
+
+
+            <div class="container py-5">
+
+                <v-app>
+                    <v-card flat class="mx-auto h3 font-weight-bold" max-width="900" width="100%">수강종류</v-card>
+
+                    <v-card class="mx-auto my-5" max-width="900" width="100%">
+                        <v-container class="p-0">
+                            <v-row class=" py-0">
+                                <v-col cols="12" md="8" class="p-4">
+                                    <v-row>
+                                        <v-col cols="12" class="h4 font-weight-bold">
+                                            수강종류
+                                        </v-col>
+                                    </v-row>
+                                    <v-row class="mb-4">
+                                        <v-col cols="6" md="3" v-for="(type, index) in classTypes">
+                                            <v-btn block large class="w-100" @click="typeSelected = type.text"
+                                                :color="typeSelected == type.text ? activeColor : inactiveColor">
+                                                <v-icon class="mr-3">{{type.icon}}</v-icon> {{type.text}}
+                                            </v-btn>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="12" class="h4 font-weight-bold">
+                                            전 과정 무이자 할부
+                                        </v-col>
+                                    </v-row>
+                                    <v-row class="px-1">
+                                        <v-col cols=12">
+                                            <v-tabs v-model="tab" slider-color="#FFC000" grow>
+                                                <v-tab><span class="h6 mb-0 font-weight-bold">10분</span></v-tab>
+                                                <v-tab><span class="h6 mb-0 font-weight-bold">20분</span></v-tab>
+                                                <v-tab><span class="h6 mb-0 font-weight-bold">30분</span></v-tab>
+                                                <v-tab-item>
+                                                    <v-row>
+                                                        <v-col class="h-100 px-1" cols="4" md="2"
+                                                            v-for="(book, index) in bookList10">
+                                                            <v-btn class="p-0 w-100" height="100"
+                                                                style="display: unset; white-space: unset;line-break: strict;word-break: keep-all;"
+                                                                large color="white"
+                                                                :disabled="book.status == 'disabled'"
+                                                                @click="bookSelected = book"
+                                                                :color="bookSelected == book ? activeColor : inactiveColor">
+                                                                {{book.text}}
+                                                            </v-btn>
+                                                        </v-col>
+                                                    </v-row>
+                                                </v-tab-item>
+                                                <v-tab-item>
+                                                    <v-row>
+                                                        <v-col class="h-100 px-1" cols="4" md="2"
+                                                            v-for="(book, index) in bookList20">
+                                                            <v-btn class="p-0 w-100" height="100"
+                                                                style="display: unset; white-space: unset;line-break: strict;word-break: keep-all;"
+                                                                large color="white"
+                                                                :disabled="book.status == 'disabled'"
+                                                                @click="bookSelected = book"
+                                                                :color="bookSelected == book ? activeColor : inactiveColor">
+                                                                {{book.text}}
+                                                            </v-btn>
+                                                        </v-col>
+                                                    </v-row>
+                                                </v-tab-item>
+                                                <v-tab-item>
+                                                    <v-row>
+                                                        <v-col class="h-100 px-1" cols="4" md="2"
+                                                            v-for="(book, index) in bookList30">
+                                                            <v-btn class="p-0 w-100" height="100"
+                                                                style="display: unset; white-space: unset;line-break: strict;word-break: keep-all;"
+                                                                large color="white" :disabled="book.status =='disabled'"
+                                                                @click="bookSelected = book"
+                                                                :color="bookSelected == book ? activeColor : inactiveColor">
+                                                                {{book.text}}
+                                                            </v-btn>
+                                                        </v-col>
+                                                    </v-row>
+                                                </v-tab-item>
+                                            </v-tabs>
+
+                                        </v-col>
+                                    </v-row>
+                                    <v-row class="px-1">
+                                        <v-col cols="12">
+                                            <v-row>
+                                                <v-col cols=12 class="h4 font-weight-bold">
+                                                    수업횟수
+                                                </v-col>
+                                            </v-row>
+                                            <v-row>
+                                                <v-col cols="4" class="px-1" v-for="(frequency, index) in frequencyList"
+                                                    :key=index>
+                                                    <v-btn large class="w-100" color="white"
+                                                        @click="frequencySelected = frequency"
+                                                        :color="frequencySelected == frequency ? activeColor : inactiveColor">
+                                                        {{frequency}}
+                                                    </v-btn>
+                                                </v-col>
+                                            </v-row>
+                                        </v-col>
+
+                                        <v-col cols="12">
+                                            <v-row>
+                                                <v-col cols=12 class="h4 font-weight-bold">
+                                                    수강기간
+                                                </v-col>
+                                            </v-row>
+                                            <v-row>
+                                                <v-col cols="3" class="px-1" v-for="(duration, index) in durationList"
+                                                    :key=index>
+                                                    <v-btn style="height: 44px !important" class="w-100 h-100"
+                                                        color="white" @click="durationSelected = duration" :color="durationSelected == duration ? activeColor :
+                                                        inactiveColor">
+                                                        {{duration}}
+                                                    </v-btn>
+                                                </v-col>
+                                            </v-row>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="12" class="h4 font-weight-bold">
+                                            수업날짜
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="4" md="2" class="px-1" v-for="(day, index) in days" :key=index>
+                                            <v-btn block large class="w-100" @click="daySelected = day"
+                                                :color="daySelected == day ? activeColor :inactiveColor">
+                                                {{day}}
+                                            </v-btn>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols=12 class="h4 font-weight-bold">
+                                            수업시간
+                                        </v-col>
+                                        <v-container class="py-0">
+                                            <v-row>
+                                                <v-col cols="12">
+                                                    <v-tabs v-model="tab2" slider-color="#FFC000" grow show-arrows>
+                                                        <v-tab>프라임<br> 6:00 - 10:00</v-tab>
+                                                        <v-tab>이코노미<br> 10:00 - 5:00</v-tab>
+                                                        <v-tab>프라임<br> 5:00 - 0:00</v-tab>
+                                                        <v-tab-item class="mt-2">
+                                                            <v-row>
+                                                                <v-col>
+                                                                    <v-tabs grow v-if="seeMore" slider-color="#FFC000"
+                                                                        show-arrows>
+                                                                        <v-tab v-for="n in 4" @click="setTime(n+5)">
+                                                                            {{n+5}}
+                                                                        </v-tab>
+                                                                    </v-tabs>
+                                                                </v-col>
+                                                            </v-row>
+                                                            <v-row>
+                                                                <v-col cols="4" md="2"
+                                                                    v-for="(time, index) in timeList">
+                                                                    <v-btn large class="w-100" color="white"
+                                                                        @click="timeClick(time, index), timeSelected = time"
+                                                                        :color="timeSelected == time ? activeColor : inactiveColor">
+                                                                        {{time}}
+                                                                    </v-btn>
+                                                                </v-col>
+                                                            </v-row>
+                                                        </v-tab-item>
+                                                        <v-tab-item class="mt-2">
+                                                            <v-row>
+                                                                <v-col>
+                                                                    <v-tabs grow v-if="seeMore" slider-color="#FFC000"
+                                                                        show-arrows>
+                                                                        <v-tab v-for="n in 7" @click="setTime(n+9)">
+                                                                            {{n+9}}
+                                                                        </v-tab>
+                                                                    </v-tabs>
+                                                                </v-col>
+                                                            </v-row>
+                                                            <v-row>
+                                                                <v-col cols="4" md="2"
+                                                                    v-for="(time, index) in timeList">
+                                                                    <v-btn large class="w-100" color="white"
+                                                                        @click="timeClick(time, index), timeSelected = time"
+                                                                        :color="timeSelected == time ? activeColor : inactiveColor">
+                                                                        {{time}}
+                                                                    </v-btn>
+                                                                </v-col>
+                                                            </v-row>
+                                                        </v-tab-item>
+                                                        <v-tab-item class="mt-2">
+                                                            <v-row>
+                                                                <v-col>
+                                                                    <v-tabs grow v-if="seeMore" slider-color="#FFC000"
+                                                                        show-arrows>
+                                                                        <v-tab v-for="n in 7" @click="setTime(n+16)">
+                                                                            {{n+16}}
+                                                                        </v-tab>
+                                                                    </v-tabs>
+                                                                </v-col>
+                                                            </v-row>
+                                                            <v-row>
+                                                                <v-col cols="4" md="2"
+                                                                    v-for="(time, index) in timeList">
+                                                                    <v-btn large class="w-100" color="white"
+                                                                        @click="timeClick(time, index), timeSelected = time"
+                                                                        :color="timeSelected == time ? activeColor : inactiveColor">
+                                                                        {{time}}
+                                                                    </v-btn>
+                                                                </v-col>
+                                                            </v-row>
+                                                        </v-tab-item>
+                                                    </v-tabs>
+                                                </v-col>
+                                            </v-row>
+                                        </v-container>
+                                    </v-row>
+                                </v-col>
+                                <v-col cols="12" md="4" class="p-0">
+                                    <v-container class="h-100 px-0 py-0">
+                                        <v-card class="pt-7" dark color="#303030" height="100%">
+                                            <p class="h4 font-weight-bold text-center">수강선택요약</p>
+                                            <v-container class="body-2 font-weight-medium p-4">
+                                                <v-row>
+                                                    <v-col cols="5">수강코스</v-col>
+                                                    <v-col v-if="typeSelected != -1" cols="7">{{typeSelected}}</v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="5">학급 유형</v-col>
+                                                    <v-col v-if="bookSelected != -1" cols="7">
+                                                        {{bookSelected.curriculum}}</v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="5">수강과정</v-col>
+                                                    <v-col v-if="bookSelected != -1" cols="7">{{bookSelected.material}}
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="5">수강횟수</v-col>
+                                                    <v-col v-if="durationSelected != -1 && frequencySelected != -1"
+                                                        cols="7">
+                                                        {{frequencySelected}}&nbsp;{{durationSelected}}
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="5">시작일</v-col>
+                                                    <v-col v-if="daySelected != -1" cols="7">{{daySelected}}</v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="5">타임존</v-col>
+                                                    <v-col v-if="timeZoneSelected != -1" cols="7">{{timeZoneSelected}}
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row class="mb-8">
+                                                    <v-col cols="5">수강시작시작</v-col>
+                                                    <v-col v-if="endTime != 'Invalid date' && endTime != ''" cols="7">
+                                                        {{timeSummary}} -
+                                                        {{endTime}}
+                                                        ({{ minuteSelected}})
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row class="mb-5 d-flex justify-center">
+                                                    <p class="h4 font-weight-bold text-center" style="color:#FF8B71;">
+                                                        결재예정금액</p>
+                                                </v-row>
+                                                <v-row style="color:#FF8B71;">
+                                                    <v-col cols="5">결재금액</v-col>
+                                                    <v-col cols="7">
+                                                        <s v-if="price != total">{{price}}</s>
+                                                        <div v-else>{{price}}</div>
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="5" style="color:#FF8B71;">할인금액</v-col>
+                                                    <v-col cols="7" style="color:#ff522d;">{{discount}}
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row style="color:#FF8B71;">
+                                                    <v-col cols="5">교재비</v-col>
+                                                    <v-col cols="7">0</v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="5" style="color:#FF8B71;">총결재금액</v-col>
+                                                    <v-col cols="7">{{total}}</v-col>
+                                                </v-row>
+                                                <v-row class="d-flex justify-center mt-5">
+                                                    <v-btn x-large outlined class="h5 font-weight-medium">수업신청하기
+                                                    </v-btn>
+                                                </v-row>
+                                            </v-container>
+                                        </v-card>
+                                    </v-container>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-card>
+
+                </v-app>
+
+            </div>
+
+            <div w3-include-html="footer.html"></div>
+
+            </v-card>
+
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/include.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+
+    </body>
+</div>
+
+
+
+<script>
+    new Vue({
+
+        el: '#app',
+
+
+        data: {
+
+
+            windowWidth: 0,
+            timeList: [],
+            days: [],
+            dateTime: new Date(),
+
+            seeMore: false,
+            tab: null,
+            tab2: null,
+
+            activeColor: '#FFE699',
+            inactiveColor: '#FFF',
+
+            minuteSelected: -1,
+            bookSelected: -1,
+            frequencySelected: -1,
+            durationSelected: -1,
+            timeSelected: -1,
+            daySelected: -1,
+            timeZoneSelected: 0,
+            typeSelected: -1,
+            endTime: '',
+
+            price: '',
+            discount: '',
+            total: '',
+            isLoaded: false,
+
+
+            classTypes: [{
+                    icon: 'call',
+                    text: '전화영어'
+                },
+                {
+                    icon: 'videocam',
+                    text: '화상영어'
+                }
+            ],
+
+            bookList10: [{
+                    status: 'enabled',
+                    text: '프리토킹 묻고 답하기',
+                    curriculum: '프리토킹',
+                    material: '묻고 답하기'
+                },
+                {
+                    status: 'enabled',
+                    text: '프리토킹 \n 의견말하기',
+                    curriculum: '프리토킹',
+                    material: '의견말하기'
+                },
+                {
+                    status: 'enabled',
+                    text: '프리토킹\n 사진묘사',
+                    curriculum: '프리토킹',
+                    material: '사진묘사'
+                },
+                {
+                    status: 'enabled',
+                    text: '프리토킹\n 영자신문 (준비중)',
+                    curriculum: '프리토킹',
+                    material: '영자신문'
+                },
+                {
+                    status: 'enabled',
+                    text: '일상&패턴\n 스피킹패턴',
+                    curriculum: '일상&패턴',
+                    material: '스피킹패턴'
+                },
+                {
+                    status: 'disabled',
+                    text: '일상&패턴\n 문법패턴',
+                    curriculum: '일상&패턴',
+                    material: '문법패턴'
+                },
+                {
+                    status: 'enabled',
+                    text: '일상&패턴\n 일상대화',
+                    curriculum: '일상&패턴',
+                    material: '일상대화'
+                },
+                {
+                    status: 'disabled',
+                    text: '리딩&스피킹\n 퍼펙트리딩',
+                    curriculum: '리딩&스피킹',
+                    material: '퍼펙트리딩'
+                },
+                {
+                    status: 'disabled',
+                    text: '리딩&스피킹\n 영자신문 (준비중)',
+                    curriculum: '리딩&스피킹',
+                    material: '영자신문'
+                },
+                {
+                    status: 'disabled',
+                    text: '비지니스\n 인터뷰과정',
+                    curriculum: '비지니스',
+                    material: '인터뷰과정'
+                },
+                {
+                    status: 'enabled',
+                    text: '비지니스\n 비지니스회화',
+                    curriculum: '비지니스',
+                    material: '비지니스회화'
+                },
+                {
+                    status: 'enabled',
+                    text: '여행영어',
+                    curriculum: '여행영어',
+                    material: '여행영어'
+                },
+            ],
+
+            bookList20: [{
+                    status: 'enabled',
+                    text: '프리토킹 묻고 답하기',
+                    curriculum: '프리토킹',
+                    material: '묻고 답하기'
+                },
+                {
+                    status: 'enabled',
+                    text: '프리토킹 \n 의견말하기',
+                    curriculum: '프리토킹',
+                    material: '의견말하기'
+                },
+                {
+                    status: 'enabled',
+                    text: '프리토킹\n 사진묘사',
+                    curriculum: '프리토킹',
+                    material: '사진묘사'
+                },
+                {
+                    status: 'enabled',
+                    text: '프리토킹\n 영자신문 (준비중)',
+                    curriculum: '프리토킹',
+                    material: '영자신문'
+                },
+                {
+                    status: 'enabled',
+                    text: '일상&패턴\n 스피킹패턴',
+                    curriculum: '일상&패턴',
+                    material: '스피킹패턴'
+                },
+                {
+                    status: 'disabled',
+                    text: '일상&패턴\n 문법패턴',
+                    curriculum: '일상&패턴',
+                    material: '문법패턴'
+                },
+                {
+                    status: 'enabled',
+                    text: '일상&패턴\n 일상대화',
+                    curriculum: '일상&패턴',
+                    material: '일상대화'
+                },
+                {
+                    status: 'enabled',
+                    text: '리딩&스피킹\n 퍼펙트리딩',
+                    curriculum: '리딩&스피킹',
+                    material: '퍼펙트리딩'
+                },
+                {
+                    status: 'enabled',
+                    text: '리딩&스피킹\n 영자신문 (준비중)',
+                    curriculum: '리딩&스피킹',
+                    material: '영자신문'
+                },
+                {
+                    status: 'enabled',
+                    text: '비지니스\n 인터뷰과정',
+                    curriculum: '비지니스',
+                    material: '인터뷰과정'
+                },
+                {
+                    status: 'enabled',
+                    text: '비지니스\n 비지니스회화',
+                    curriculum: '비지니스',
+                    material: '비지니스회화'
+                },
+                {
+                    status: 'enabled',
+                    text: '여행영어',
+                    curriculum: '여행영어',
+                    material: '여행영어'
+                },
+            ],
+
+            bookList30: [{
+                    status: 'enabled',
+                    text: '프리토킹 묻고 답하기',
+                    curriculum: '프리토킹',
+                    material: '묻고 답하기'
+                },
+                {
+                    status: 'enabled',
+                    text: '프리토킹 \n 의견말하기',
+                    curriculum: '프리토킹',
+                    material: '의견말하기'
+                },
+                {
+                    status: 'enabled',
+                    text: '프리토킹\n 사진묘사',
+                    curriculum: '프리토킹',
+                    material: '사진묘사'
+                },
+                {
+                    status: 'enabled',
+                    text: '프리토킹\n 영자신문 (준비중)',
+                    curriculum: '프리토킹',
+                    material: '영자신문'
+                },
+                {
+                    status: 'enabled',
+                    text: '일상&패턴\n 스피킹패턴',
+                    curriculum: '일상&패턴',
+                    material: '스피킹패턴'
+                },
+                {
+                    status: 'enabled',
+                    text: '일상&패턴\n 문법패턴',
+                    curriculum: '일상&패턴',
+                    material: '문법패턴'
+                },
+                {
+                    status: 'enabled',
+                    text: '일상&패턴\n 일상대화',
+                    curriculum: '일상&패턴',
+                    material: '일상대화'
+                },
+                {
+                    status: 'enabled',
+                    text: '리딩&스피킹\n 퍼펙트리딩',
+                    curriculum: '리딩&스피킹',
+                    material: '퍼펙트리딩'
+                },
+                {
+                    status: 'enabled',
+                    text: '리딩&스피킹\n 영자신문 (준비중)',
+                    curriculum: '리딩&스피킹',
+                    material: '영자신문'
+                },
+                {
+                    status: 'enabled',
+                    text: '비지니스\n 인터뷰과정',
+                    curriculum: '비지니스',
+                    material: '인터뷰과정'
+                },
+                {
+                    status: 'enabled',
+                    text: '비지니스\n 비지니스회화',
+                    curriculum: '비지니스',
+                    material: '비지니스회화'
+                },
+                {
+                    status: 'enabled',
+                    text: '여행영어',
+                    curriculum: '여행영어',
+                    material: '여행영어'
+                },
+            ],
+
+            frequencyList: ['주2회 화목', '주3회 월수금', '주5회 월~금'],
+            durationList: ['4주', '12주', '6개월', '1년'],
+
+        },
+
+        beforeMount() {
+            console.log('test')
+        },
+
+        mounted() {
+
+            this.isLoaded = true
+
+            console.log('mounted')
+
+            for (var i = 1; i < 12; i++) {
+                var today = new Date()
+                var nextDates = new Date(today)
+                nextDates.setDate(nextDates.getDate() + i)
+                if (nextDates.getDay() != 6 && nextDates.getDay() != 0 && this.days.length < 6) {
+                    this.days.push(this.formatDate(nextDates))
+                }
+            }
+
+
+            this.$nextTick(function () {
+                window.addEventListener('resize', this.getWindowWidth);
+                this.getWindowWidth()
+            })
+
+
+            this.timeList = []
+            this.setTime(6)
+
+        },
+
+        computed: {
+
+            priceAvailable() {
+                const {
+                    minuteSelected,
+                    bookSelected,
+                    frequencySelected,
+                    durationSelected,
+                    timeSelected,
+                    daySelected,
+                    timeZoneSelected,
+                    typeSelected
+                } = this
+
+
+                return {
+                    minuteSelected,
+                    bookSelected,
+                    frequencySelected,
+                    durationSelected,
+                    timeSelected,
+                    daySelected,
+                    timeZoneSelected,
+                    typeSelected
+                }
+
+            }
+
+        },
+
+
+
+        watch: {
+
+            tab: function () {
+                this.minuteSelected = this.tab == 0 ? '10분' : this.tab == 1 ? '20분' : '30분'
+                this.calculateTime(this.timeSelected)
+            },
+
+            tab2: function () {
+                this.tab2 == 0 ? this.setTime(6) : this.tab2 == 1 ? this.setTime(10) : this.setTime(17)
+                this.timeZoneSelected = this.tab2 == 0 ? '프라임' : this.tab2 == 1 ? '이코노미' : '프라임'
+            },
+
+            priceAvailable: function (obj) {
+                if (obj.minuteSelected != -1 &&
+                    obj.frequencySelected != -1 &&
+                    obj.durationSelected != -1 &&
+                    obj.timeZoneSelected != -1 &&
+                    obj.typeSelected != -1) {
+                    localStorage.setItem("minute", obj.minuteSelected)
+                    localStorage.setItem("frequency", obj.frequencySelected)
+                    localStorage.setItem("duration", obj.durationSelected)
+                    localStorage.setItem("time", obj.timeSelected)
+                    localStorage.setItem("day", obj.daySelected)
+                    localStorage.setItem("timeZone", obj.timeZoneSelected)
+                    localStorage.setItem("type", obj.typeSelected)
+
+                    this.showPrice()
+
+                }
+            }
+        },
+
+        methods: {
+
+            getWindowWidth() {
+                this.windowWidth = document.documentElement.clientWidth;
+            },
+
+            formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (day.length < 2)
+                    day = +day;
+
+                return [month, day].join('/');
+            },
+
+            setTime(timeText) {
+                this.timeList = []
+                this.dateTime.setHours(timeText)
+                this.dateTime.setMinutes(0)
+
+                for (var i = 0; i < 6; i++) {
+                    var nextTime = new Date(this.dateTime)
+                    nextTime.setMinutes(this.dateTime.getMinutes() + (10 * i))
+                    this.timeList.push(nextTime.getHours() + ":" + (nextTime.getMinutes() == 0 ? nextTime
+                        .getMinutes() +
+                        '0' : nextTime
+                        .getMinutes()))
+                }
+
+                if (!this.seeMore) {
+                    this.timeList.pop()
+                    this.timeList.push('...')
+                }
+            },
+
+            timeClick(time, id) {
+                if (time == '...') {
+                    this.seeMore = !this.seeMore
+                    this.tab2 == 0 ? this.setTime(6) : this.tab2 == 1 ? this.setTime(10) : this.setTime(17)
+                    this.timeSummary = ''
+                } else {
+                    this.timeSummary = time
+                }
+
+                this.calculateTime(time)
+
+            },
+
+            calculateTime(time) {
+
+                var date = new Date()
+                date.setHours(time.split(":")[0])
+                date.setMinutes(time.split(":")[1])
+
+                var endTime = moment(date).add(this.minuteSelected.substring(0, 2), 'minutes');
+                this.endTime = endTime.format('HH:mm')
+            },
+
+            showPrice() {
+                var classType
+                var timeZone
+                var duration
+                var frequency
+                var time
+                var discount
+                var price
+                var total
+
+
+
+
+                var temp_time
+                var temp_frequency
+                var temp_duration
+                var temp_timeZone
+
+
+
+                temp_time = localStorage.getItem("minute").slice(0, -1)
+                temp_frequency = localStorage.getItem("frequency").slice(0, 2).slice(1, 2)
+                temp_duration = localStorage.getItem("duration").slice(0, 1)
+                temp_timeZone = localStorage.getItem("timeZone") == '프라임' ? 'Prime' : 'Economy'
+
+                classType = localStorage.getItem("type") == '전화영어' ? 'Phone' : 'Video'
+                time = temp_time == 10 ? 10 : temp_time == 20 ? 20 : 30
+                frequency = temp_frequency == 2 ? 2 : temp_frequency == 3 ? 3 : 5
+                duration = temp_duration == 4 ? 1 : temp_duration == 12 ? 3 : temp_duration == 6 ? 6 : 12
+                timeZone = temp_timeZone
+
+                console.log(classType)
+                console.log(time)
+                console.log(frequency)
+                console.log(duration)
+                console.log(timeZone)
+
+                function sayHi() {
+                    console.log('hi')
+                }
+
+                switch (classType) {
+
+                    case 'Phone':
+
+                        switch (timeZone) {
+
+                            case 'Prime':
+
+                                switch (time) {
+
+                                    case 10:
+
+                                        switch (duration) {
+
+                                            case 1:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '64,000'
+                                                        discount = 0
+                                                        total = '64,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '86,000'
+                                                        discount = 0
+                                                        total = '86,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '109,000'
+                                                        discount = 0
+                                                        total = '109,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 3:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '192,000'
+                                                        discount = '19, 000(10 % OFF)'
+                                                        total = '173,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '258,000'
+                                                        discount = '26, 000(10 % OFF)'
+                                                        total = '232,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '327,000'
+                                                        discount = '33, 000(10 % OFF)'
+                                                        total = '294,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 6:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '384,000'
+                                                        discount = '58, 000(15 % OFF)'
+                                                        total = '326,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '516,000'
+                                                        discount = '77, 000(15 % OFF)'
+                                                        total = '439,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '654,000'
+                                                        discount = '98, 000(15 % OFF)'
+                                                        total = '556,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 12:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '768,000'
+                                                        discount = '154, 000(20 % OFF)'
+                                                        total = '614,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '1,032,000'
+                                                        discount = '206, 000(20 % OFF)'
+                                                        total = '826,000'
+
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '1,308,000'
+                                                        discount = '262, 000(20 % OFF)'
+                                                        total = '1,046,000'
+
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            default:
+
+                                                console.log('duration error');
+
+                                                break;
+                                        }
+
+
+                                        break;
+
+                                    case 20:
+
+                                        switch (duration) {
+
+                                            case 1:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '128,000'
+                                                        discount = 0
+                                                        total = '128,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '172,000'
+                                                        discount = 0
+                                                        total = '172,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '218,000'
+                                                        discount = 0
+                                                        total = '218,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 3:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '384,000'
+                                                        discount = '38, 000(10 % OFF)'
+                                                        total = '346,000'
+
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '516,000'
+                                                        discount = '52, 000(10 % OFF)'
+                                                        total = '464,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '654,000'
+                                                        discount = '66, 000(10 % OFF)'
+                                                        total = '588,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 6:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '768,000'
+                                                        discount = '116, 000(15 % OFF)'
+                                                        total = '652,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '1,032,000'
+                                                        discount = '154, 000(15 % OFF)'
+                                                        total = '878,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '1,308,000'
+                                                        discount = '196, 000(15 % OFF)'
+                                                        total = '1,112,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 12:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '1,536,000'
+                                                        discount = '308, 000(20 % OFF)'
+                                                        total = '1,228,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '2,064,000'
+                                                        discount = '412, 000(20 % OFF)'
+                                                        total = '1,652,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '2,616,000'
+                                                        discount = '524, 000(20 % OFF)'
+                                                        total = '2,092,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            default:
+
+                                                console.log('duration error');
+
+                                                break;
+                                        }
+
+                                        break;
+
+                                    case 30:
+
+                                        switch (duration) {
+
+                                            case 1:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '192,000'
+                                                        discount = 0
+                                                        total = '192,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '258,000'
+                                                        discount = 0
+                                                        total = '258,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '327,000'
+                                                        discount = 0
+                                                        total = '327,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 3:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '576,000'
+                                                        discount = '57, 000(10 % OFF)'
+                                                        total = '519,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '774,000'
+                                                        discount = '78, 000(10 % OFF)'
+                                                        total = '696,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '981,000'
+                                                        discount = '99, 000(10 % OFF)'
+                                                        total = '882,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 6:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '1,152,000'
+                                                        discount = '174, 000(15 % OFF)'
+                                                        total = '978,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '1,548,000'
+                                                        discount = '231, 000(15 % OFF)'
+                                                        total = '1,317,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '1,962,000'
+                                                        discount = '294, 000(15 % OFF)'
+                                                        total = '1,668,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 12:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '2,304,000'
+                                                        discount = '462, 000(20 % OFF)'
+                                                        total = '1,842,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '3,096,000'
+                                                        discount = '618, 000(20 % OFF)'
+                                                        total = '2,478,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '3,924,000'
+                                                        discount = '786, 000(20 % OFF)'
+                                                        total = '3,138,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            default:
+
+                                                console.log('duration error');
+
+                                                break;
+                                        }
+
+                                        break;
+
+
+                                    default:
+
+                                        console.log('time error');
+
+                                        break;
+                                }
+
+                                break;
+
+                            case 'Economy':
+
+                                switch (time) {
+
+                                    case 10:
+
+                                        switch (duration) {
+
+                                            case 1:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '64,000'
+                                                        discount = '6, 000(10 % OFF)'
+                                                        total = '58,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '86,000'
+                                                        discount = '9, 000(10 % OFF)'
+                                                        total = '77,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '109,000'
+                                                        discount = '11, 000(10 % OFF)'
+                                                        total = '98,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 3:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '192,000'
+                                                        discount = '38, 000(20 % OFF)'
+                                                        total = '154,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '258,000'
+                                                        discount = '52, 000(20 % OFF)'
+                                                        total = '206,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '327,000'
+                                                        discount = '65, 000(20 % OFF)'
+                                                        total = '262,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 6:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '384,000'
+                                                        discount = '96, 000(25 % OFF)'
+                                                        total = '288,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '516,000'
+                                                        discount = '129, 000(25 % OFF)'
+                                                        total = '387,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '654,000'
+                                                        discount = '163, 000(25 % OFF)'
+                                                        total = '491,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 12:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '768,000'
+                                                        discount = '230, 000(30 % OFF)'
+                                                        total = '538,000'
+
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '1,032,000 '
+                                                        discount = '310, 000(30 % OFF)'
+                                                        total = '722,000'
+
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '1,308,000'
+                                                        discount = '392, 000(30 % OFF)'
+                                                        total = '916,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            default:
+
+                                                console.log('duration error');
+
+                                                break;
+                                        }
+
+                                        break;
+
+                                    case 20:
+
+                                        switch (duration) {
+
+                                            case 1:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '128,000'
+                                                        discount = '24, 000(10 % OFF)'
+                                                        total = '104,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '172,000'
+                                                        discount = '33, 000(10 % OFF)'
+                                                        total = '139,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '218,000'
+                                                        discount = '42, 000(10 % OFF)'
+                                                        total = '176,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency errors');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 3:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '218,000'
+                                                        discount = '107, 000(20 % OFF)'
+                                                        total = '277,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '218,000'
+                                                        discount = '145, 000(20 % OFF)'
+                                                        total = '371,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '218,000'
+                                                        discount = '182, 000(20 % OFF)'
+                                                        total = '472,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 6:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '768,000'
+                                                        discount = '250, 000(25 % OFF)'
+                                                        total = '518,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '1,032,000'
+                                                        discount = '335, 000(25 % OFF)'
+                                                        total = '1,308,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '218,000'
+                                                        discount = '424, 000(25 % OFF)'
+                                                        total = '884,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 12:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '1,536,000'
+                                                        discount = '568, 000(30 % OFF)'
+                                                        total = '968,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '2,064,000'
+                                                        discount = '764, 000(30 % OFF)'
+                                                        total = '1,300,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '2,616,000'
+                                                        discount = '967, 000(30 % OFF)'
+                                                        total = '1,649,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            default:
+
+                                                console.log('duration error');
+
+                                                break;
+                                        }
+
+                                        break;
+
+
+                                    case 30:
+
+                                        switch (duration) {
+
+                                            case 1:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '192,000'
+                                                        discount = '44, 000(10 % OFF)'
+                                                        total = '148,000'
+
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '258,000'
+                                                        discount = '62, 000(10 % OFF)'
+                                                        total = '196,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '327,000'
+                                                        discount = '77, 000(10 % OFF)'
+                                                        total = '250,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 3:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '576,000'
+                                                        discount = '183, 000(20 % OFF)'
+                                                        total = '393,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '774,000'
+                                                        discount = '249, 000(20 % OFF)'
+                                                        total = '525,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '981,000'
+                                                        discount = '313, 000(20 % OFF)'
+                                                        total = '668,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 6:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '1,152,000'
+                                                        discount = '418, 000(25 % OFF)'
+                                                        total = '734,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '1,548,000'
+                                                        discount = '561, 000(25 % OFF)'
+                                                        total = '987,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '1,962,000'
+                                                        discount = '710, 000(25 % OFF)'
+                                                        total = '1,252,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            case 12:
+
+                                                switch (frequency) {
+
+                                                    case 2:
+
+                                                        price = '2,304,000'
+                                                        discount = '932, 000(30 % OFF)'
+                                                        total = '1,372,000'
+
+                                                        break;
+
+                                                    case 3:
+
+                                                        price = '3,096,000'
+                                                        discount = '1,255, 000(30 % OFF)'
+                                                        total = '1,841,000'
+
+                                                        break;
+
+                                                    case 5:
+
+                                                        price = '3,924,000'
+                                                        discount = '1,588, 000(30 % OFF)'
+                                                        total = '2,336,000'
+
+                                                        break;
+
+                                                    default:
+
+                                                        console.log('frequency error');
+
+                                                        break;
+                                                }
+
+                                                break;
+
+                                            default:
+
+                                                console.log('duration error');
+
+                                                break;
+                                        }
+
+                                        break;
+
+
+                                    default:
+
+                                        console.log('time error');
+
+                                        break;
+                                }
+
+                                break;
+
+                            default:
+
+                                console.log('time zone error')
+
+                                break;
+                        }
+
+                        break;
+
+                    case 'Video':
+
+
+                        break;
+
+                    default:
+
+                        console.log('class type Error')
+
+                        break;
+                }
+
+
+
+                this.price = price
+                this.discount = discount
+                this.total = total
+
+                console.log(this.price)
+
+
+            }
+
+        },
+
+        vuetify: new Vuetify(),
+
+        beforeDestroy() {
+            window.removeEventListener('resize', this.getWindowWidth);
+        },
+
+
+
+    }).$mount('#app')
+</script>
+
+
+</html>

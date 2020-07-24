@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mega.css">
+    <link rel="stylesheet" href="css/responsive-font.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/notice.css">
+
+
+    <title>Megatalking</title>
+</head>
+
+<div id="app">
+
+
+
+
+    <body>
+
+        <div class="container-fluid px-0 h-100" style="position: relative;">
+
+            <div w3-include-html="nav.html"></div>
+
+
+            <v-img src="img/report-img.jpg" class="w-100" height="275"></v-img>
+
+            <div class="container" style="max-width:1000px;">
+
+                <v-card-title>Notice Board</v-card-title>
+                <v-app class="h-100">
+                    <v-tabs class="mb-5" v-model="tab" background-color="transparent" slider-color="orange"
+                        color="black" show-arrows>
+                        <v-tab class="mx-2">Notice</v-tab>
+                        <v-tab class="mx-2">Course Review</v-tab>
+                        <v-tab class="mx-2">QnA</v-tab>
+                        <v-tab class="mx-2">FAQ</v-tab>
+                        <v-tab-item>
+                            <v-data-table class="mb-auto mt-5 h-100" :headers="headers" :items="content"
+                                :expanded="expanded" show-expand single-expand="true" item-key="subject"
+                                hide-default-footer>
+                                <template v-slot:expanded-item="{ headers, item }">
+                                    <td :colspan="headers.length">More info about the Change</td>
+                                </template>
+                            </v-data-table>
+                        </v-tab-item>
+
+
+                        <v-tab-item>
+                            <v-data-table class="mb-auto mt-5 h-100" :headers="headers1" :items="content1"
+                                :expanded="expanded" show-expand single-expand="true" item-key="subject"
+                                hide-default-footer>
+
+                                <template v-slot:expanded-item="{ headers, item }">
+                                    <td :colspan="headers.length">Course Review Info</td>
+                                </template>
+                            </v-data-table>
+                        </v-tab-item>
+
+                        <v-tab-item>
+
+                        </v-tab-item>
+
+                        <v-tab-item>
+                            <v-data-table class="mb-auto mt-5 h-100" :headers="headers2" :items="content2"
+                                :expanded="expanded" show-expand single-expand="true" item-key="faq"
+                                hide-default-footer>
+
+                                <template v-slot:expanded-item="{ headers, item }">
+                                    <td :colspan="headers.length">FAQ Info</td>
+                                </template>
+                            </v-data-table>
+                        </v-tab-item>
+
+                    </v-tabs>
+                    <div class="text-center w-100 h-100 mt-auto d-flex justify-center align-items-end">
+                        <v-pagination v-model="page" :length="17" :total-visible="7"></v-pagination>
+                    </div>
+                    <div v-if="tab == 1" class="d-flex justify-content-end mt-5 mb-3 mr-3">
+                        <v-btn color="#FF8B71" class="text-white">Write</v-btn>
+                    </div>
+                </v-app>
+
+            </div>
+
+            <div w3-include-html="footer.html" class="w-100"></div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/include.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    </body>
+</div>
+
+<style>
+    html {
+        min-height: 100%;
+    }
+
+    body,
+    #app {
+        height: 100%;
+    }
+
+    .v-data-table tbody tr.v-data-table__expanded__content {
+        box-shadow: inset 0 4px 8px -5px #FFF, inset 0 -4px 8px -5px #FFF;
+    }
+</style>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            tab: null,
+            expanded: [],
+            singleExpand: true,
+            headers: [{
+                    text: '',
+                    align: 'start',
+                    sortable: false,
+                    value: 'icon',
+                    width: '10%'
+                },
+                {
+                    text: 'Date',
+                    align: 'start',
+                    value: 'date',
+                    width: '20%'
+                },
+                {
+                    text: 'Subject',
+                    sortable: false,
+                    value: 'subject'
+                },
+                {
+                    text: '',
+                    value: 'data-table-expand'
+                }
+            ],
+            content: [{
+                    date: '[mm-dd-yyyy]',
+                    subject: 'subject1',
+                },
+                {
+                    date: '[mm-dd-yyyy]',
+                    subject: 'subject2',
+                },
+                {
+                    date: '[mm-dd-yyyy]',
+                    subject: 'subject3',
+                },
+
+            ],
+
+            headers1: [{
+                    text: 'Date',
+                    align: 'start',
+                    value: 'date',
+                    width: '20%'
+                },
+                {
+                    text: 'Subject',
+                    sortable: false,
+                    value: 'subject'
+                },
+                {
+                    text: '',
+                    value: 'data-table-expand'
+                }
+            ],
+            content1: [{
+                    date: '[mm-dd-yyyy]',
+                    subject: 'subject1',
+                },
+                {
+                    date: '[mm-dd-yyyy]',
+                    subject: 'subject2',
+                },
+                {
+                    date: '[mm-dd-yyyy]',
+                    subject: 'subject3',
+                },
+
+            ],
+
+            headers2: [{
+                    text: 'FAQs',
+                    align: 'start',
+                    sortable: false,
+                    value: 'faq',
+                    width: '10%'
+                },
+                {
+                    text: '',
+                    value: 'data-table-expand',
+                    align: 'end',
+                }
+            ],
+
+            content2: [{
+                    faq: '[subject/question1]',
+
+                },
+                {
+                    faq: '[subject/question2]',
+
+                },
+                {
+                    faq: '[subject/question3]',
+
+                }
+            ],
+
+        },
+
+        mounted() {},
+
+        watch: {
+            tab: function () {
+                console.log(this.tab)
+                if (this.tab == 2) {
+                    window.location = 'sign_in.html'
+                }
+            }
+        },
+        methods: {
+
+        },
+
+        vuetify: new Vuetify(),
+
+    }).$mount('#app')
+</script>
+
+
+</html>
