@@ -1,0 +1,42 @@
+
+
+.level-text-active {
+    background-color: #FFE699 !important;
+    border: 1px solid #FFC000;
+}
+
+ .form-check-input {
+     margin-top: 0;
+}
+
+
+
+@media (max-width: 575.98px) {}
+
+/** small **/
+@media (min-width: 576px) and (max-width: 767.98px) {}
+
+/** from medium **/
+@media (min-width: 768px) {}
+
+
+/** large **/
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+     input[type=checkbox] {
+         transform: scale(2);
+     }
+
+    
+    
+}
+
+/** xlarge **/
+@media (min-width: 992px) {
+
+    input[type=checkbox] {
+        transform: scale(2);
+    }
+
+}

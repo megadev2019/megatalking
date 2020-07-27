@@ -1,0 +1,125 @@
+.curriculum-box {
+    background-image: url(../img/report-img.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: auto;
+    position: relative;
+}
+
+.layer {
+    background-color: rgba(0, 0, 0, 0.69);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    max-width: 700px;
+    width: 100%;
+    height: 100%;
+}
+
+.curriculum-title {
+    padding-top: 100px;
+    font-weight: 700;
+    word-break: keep-all;
+    line-break: strict;
+}
+
+.curriculum-img-container{
+    position: relative;
+}
+
+.curriculum-book-title{
+    position: absolute;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+    z-index:5000;
+    width: 100%;
+    word-break: keep-all;
+    line-break: strict;
+    border-radius: 0 0 10px 10px;
+}
+
+.curriculum-img-details{
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    word-break: keep-all;
+    line-break: strict;
+    vertical-align: middle;
+}
+
+.curriculum-carousel-img{   
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+    position: relative;
+    border-radius: 10px;
+}
+
+    
+
+
+
+@media (max-width: 575.98px) {
+
+    .curriculum-carousel-img{
+        width: 150px;
+        height: 150px;
+    }
+
+    .curriculum-img-details{
+        width: 150px;
+        font-size: 14px;
+        font-weight: lighter;
+    }
+
+}
+
+/** small **/
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .curriculum-carousel-img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .curriculum-img-details {
+        width: 250px;
+        font-size: 14px;
+        font-weight: lighter;
+    }
+
+}
+
+/** from medium **/
+@media (min-width: 768px) {
+
+    .curriculum-carousel-img{
+        width: 247px;
+        height: 247px;
+    }
+
+       .curriculum-img-details{
+        width: 247px;
+        height: auto;
+       }
+}
+
+
+/** large **/
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+
+}
+
+/** xlarge **/
+@media (min-width: 992px) {
+
+
+  
+}
